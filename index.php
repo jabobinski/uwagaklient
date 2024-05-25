@@ -5,6 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Moja Strona</title>
     <link rel="stylesheet" href="styles.css">
+    <script>
+        function toggleCommentForm(postIndex) {
+            var form = document.getElementById('comment-form-' + postIndex);
+            if (form.style.maxHeight === '0px' || form.style.maxHeight === '') {
+                form.style.maxHeight = form.scrollHeight + 'px';
+            } else {
+                form.style.maxHeight = '0px';
+            }
+        }
+    </script>
 </head>
 <body>
     <header>
@@ -37,8 +47,10 @@
             <h2>Posty</h2>
             <?php
             include 'functions.php';
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nick'], $_POST['location'], $_POST['title'], $_POST['content'])) {
                 savePost($_POST['nick'], $_POST['location'], $_POST['title'], $_POST['content']);
+            } elseif ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comment_nick'], $_POST['comment_content'], $_POST['post_index'])) {
+                addComment($_POST['post_index'], $_POST['comment_nick'], $_POST['comment_content']);
             }
             displayPosts();
             ?>
