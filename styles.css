@@ -11,10 +11,14 @@ header {
     color: #fff;
     padding: 20px 0;
     text-align: center;
+    z-index: 1;
+    position: relative;
 }
 
 nav {
     background-color: #444;
+    z-index: 1;
+    position: relative;
 }
 
 nav ul {
@@ -42,12 +46,12 @@ nav ul li a:hover {
 
 main {
     display: flex;
-    justify-content: space-between; /* Zmienia sposób rozmieszczenia sekcji */
+    justify-content: space-between;
     padding: 20px;
 }
 
 .posts {
-    width: 60%; /* Sekcja "posts" zajmuje 60% szerokości ekranu */
+    width: 60%;
     background: #fff;
     padding: 20px;
     border-radius: 5px;
@@ -55,14 +59,15 @@ main {
 }
 
 .post-form {
-    width: 35%; /* Sekcja "post-form" zajmuje 35% szerokości ekranu */
+    width: 35%;
     background: #fff;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    position: fixed; /* Zakotwiczenie sekcji na ekranie */
-    top: 20px; /* Odległość od góry ekranu */
-    right: 20px; /* Odległość od prawej krawędzi ekranu */
+    position: fixed;
+    top: 190px; /* Dostosowane */
+    right: 20px;
+    z-index: 2;
 }
 
 .post-form h2,
@@ -105,7 +110,7 @@ main {
     margin-bottom: 10px;
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    word-wrap: break-word; /* Dodane, aby wymusić zawijanie tekstu */
+    word-wrap: break-word;
 }
 
 .comments {
