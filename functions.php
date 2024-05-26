@@ -79,4 +79,9 @@ function updateScore($postIndex, $value) {
     $posts[$postIndex]['score'] += $value;
     file_put_contents('posts.txt', serialize($posts));
 }
+
+function loadCities() {
+    $cities = file('cities.txt', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    return $cities;
+}
 ?>

@@ -10,6 +10,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header('Location: ' . $_SERVER['PHP_SELF']);
     exit;
 }
+
+$cities = loadCities();
 ?>
 
 <!DOCTYPE html>
@@ -99,7 +101,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <label for="nick">Nick:</label>
                 <input type="text" id="nick" name="nick" required>
                 <label for="location">Lokalizacja:</label>
-                <input type="text" id="location" name="location" required>
+                <input list="cities" id="location" name="location" required>
+                <datalist id="cities">
+                    <?php foreach ($cities as $city): ?>
+                        <option value="<?php echo htmlspecialchars($city); ?>">
+                    <?php endforeach; ?>
+                </datalist>
                 <label for="title">Tytuł:</label>
                 <input type="text" id="title" name="title" required>
                 <label for="content">Treść:</label>
