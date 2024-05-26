@@ -1,9 +1,23 @@
+<?php
+include 'functions.php';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['nick'], $_POST['location'], $_POST['title'], $_POST['content'])) {
+        savePost($_POST['nick'], $_POST['location'], $_POST['title'], $_POST['content']);
+    } elseif (isset($_POST['comment_nick'], $_POST['comment_content'], $_POST['post_index'])) {
+        addComment($_POST['post_index'], $_POST['comment_nick'], $_POST['comment_content']);
+    }
+    header('Location: ' . $_SERVER['PHP_SELF']);
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moja Strona</title>
+    <title>Uwaga Klient!</title>
     <link rel="stylesheet" href="styles.css">
     <script>
         function toggleCommentForm(postIndex) {
@@ -56,11 +70,11 @@
 </head>
 <body>
     <header>
-        <h1>Witamy na naszej stronie!</h1>
+        <h1>Uwaga Klient!</h1>
     </header>
     <nav>
         <ul>
-            <li><a href="#">Strona Główna</a></li>
+            <li><a href="#">Posty</a></li>
             <li><a href="#">O nas</a></li>
             <li><a href="#">Usługi</a></li>
             <li><a href="#">Kontakt</a></li>
@@ -70,7 +84,7 @@
         <section class="posts">
             <h2>Posty</h2>
             <?php
-            include 'functions.php';
+            include_once 'functions.php';
             if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nick'], $_POST['location'], $_POST['title'], $_POST['content'])) {
                 savePost($_POST['nick'], $_POST['location'], $_POST['title'], $_POST['content']);
             } elseif ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comment_nick'], $_POST['comment_content'], $_POST['post_index'])) {
@@ -95,7 +109,7 @@
         </section>
     </main>
     <footer>
-        <p>&copy; 2024 Moja Strona. Wszelkie prawa zastrzeżone.</p>
+        <p>&copy; Uwaga Klient. Wszelkie prawa zastrzeżone.</p>
     </footer>
 </body>
 </html>

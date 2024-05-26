@@ -7,7 +7,7 @@ function savePost($nick, $location, $title, $content) {
         'content' => htmlspecialchars($content),
         'date' => date('Y-m-d H:i:s'),
         'comments' => array(),
-        'score' => 0 // Nowy element: wynik oceny
+        'score' => 0 
     );
     $posts = loadPosts();
     $posts[] = $post;
