@@ -41,22 +41,32 @@ nav ul li a:hover {
 }
 
 main {
-    padding: 20px;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: space-between; /* Zmienia sposób rozmieszczenia sekcji */
+    padding: 20px;
 }
 
-.post-form {
-    width: 50%;
+.posts {
+    width: 60%; /* Sekcja "posts" zajmuje 60% szerokości ekranu */
     background: #fff;
     padding: 20px;
-    margin-bottom: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.post-form h2 {
+.post-form {
+    width: 35%; /* Sekcja "post-form" zajmuje 35% szerokości ekranu */
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: fixed; /* Zakotwiczenie sekcji na ekranie */
+    top: 20px; /* Odległość od góry ekranu */
+    right: 20px; /* Odległość od prawej krawędzi ekranu */
+}
+
+.post-form h2,
+.posts h2 {
     margin-top: 0;
 }
 
@@ -89,22 +99,13 @@ main {
     background-color: #555;
 }
 
-.posts {
-    width: 60%;
-    max-height: 600px;
-    overflow-y: auto;
-    background: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
 .post {
     background: #f9f9f9;
     padding: 15px;
     margin-bottom: 10px;
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    word-wrap: break-word; /* Dodane, aby wymusić zawijanie tekstu */
 }
 
 .comments {
@@ -131,5 +132,3 @@ main {
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
-
-.comment

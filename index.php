@@ -29,6 +29,18 @@
         </ul>
     </nav>
     <main>
+        <section class="posts">
+            <h2>Posty</h2>
+            <?php
+            include 'functions.php';
+            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nick'], $_POST['location'], $_POST['title'], $_POST['content'])) {
+                savePost($_POST['nick'], $_POST['location'], $_POST['title'], $_POST['content']);
+            } elseif ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comment_nick'], $_POST['comment_content'], $_POST['post_index'])) {
+                addComment($_POST['post_index'], $_POST['comment_nick'], $_POST['comment_content']);
+            }
+            displayPosts();
+            ?>
+        </section>
         <section class="post-form">
             <h2>Napisz Post</h2>
             <form action="index.php" method="POST">
@@ -42,18 +54,6 @@
                 <textarea id="content" name="content" required></textarea>
                 <input type="submit" value="Opublikuj">
             </form>
-        </section>
-        <section class="posts">
-            <h2>Posty</h2>
-            <?php
-            include 'functions.php';
-            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nick'], $_POST['location'], $_POST['title'], $_POST['content'])) {
-                savePost($_POST['nick'], $_POST['location'], $_POST['title'], $_POST['content']);
-            } elseif ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comment_nick'], $_POST['comment_content'], $_POST['post_index'])) {
-                addComment($_POST['post_index'], $_POST['comment_nick'], $_POST['comment_content']);
-            }
-            displayPosts();
-            ?>
         </section>
     </main>
     <footer>

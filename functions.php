@@ -5,6 +5,7 @@ function savePost($nick, $location, $title, $content) {
         'location' => htmlspecialchars($location),
         'title' => htmlspecialchars($title),
         'content' => htmlspecialchars($content),
+        'date' => date('Y-m-d H:i:s'),  // Dodanie daty utworzenia postu
         'comments' => array()
     );
     $posts = loadPosts();
@@ -16,6 +17,10 @@ function loadPosts() {
     if (file_exists('posts.txt')) {
         $posts = unserialize(file_get_contents('posts.txt'));
         if ($posts !== false) {
+            // Sortowanie postów od najnowszych do najstarszych
+            usort($posts, function($a, $b) {
+                return strtotime($b['date']) - strtotime($a['date']);
+            });
             return $posts;
         }
     }
@@ -29,6 +34,7 @@ function displayPosts() {
         echo '<h3>' . $post['title'] . '</h3>';
         echo '<p><strong>Nick:</strong> ' . $post['nick'] . '</p>';
         echo '<p><strong>Lokalizacja:</strong> ' . $post['location'] . '</p>';
+        echo '<p><strong>Data:</strong> ' . $post['date'] . '</p>'; // Wyświetlanie daty postu
         echo '<p>' . nl2br($post['content']) . '</p>';
         echo '<div class="comments">';
         echo '<h4>Komentarze:</h4>';
