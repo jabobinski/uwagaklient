@@ -5,8 +5,9 @@ function savePost($nick, $location, $title, $content) {
         'location' => htmlspecialchars($location),
         'title' => htmlspecialchars($title),
         'content' => htmlspecialchars($content),
-        'date' => date('Y-m-d H:i:s'),  // Dodanie daty utworzenia postu
-        'comments' => array()
+        'date' => date('Y-m-d H:i:s'),
+        'comments' => array(),
+        'score' => 0 // Nowy element: wynik oceny
     );
     $posts = loadPosts();
     $posts[] = $post;
@@ -17,7 +18,6 @@ function loadPosts() {
     if (file_exists('posts.txt')) {
         $posts = unserialize(file_get_contents('posts.txt'));
         if ($posts !== false) {
-            // Sortowanie postów od najnowszych do najstarszych
             usort($posts, function($a, $b) {
                 return strtotime($b['date']) - strtotime($a['date']);
             });
@@ -30,11 +30,11 @@ function loadPosts() {
 function displayPosts() {
     $posts = loadPosts();
     foreach ($posts as $index => $post) {
-        echo '<div class="post">';
+        echo '<div class="post" data-index="' . $index . '">';
         echo '<h3>' . $post['title'] . '</h3>';
         echo '<p><strong>Nick:</strong> ' . $post['nick'] . '</p>';
         echo '<p><strong>Lokalizacja:</strong> ' . $post['location'] . '</p>';
-        echo '<p><strong>Data:</strong> ' . $post['date'] . '</p>'; // Wyświetlanie daty postu
+        echo '<p><strong>Data:</strong> ' . $post['date'] . '</p>';
         echo '<p>' . nl2br($post['content']) . '</p>';
         echo '<div class="comments">';
         echo '<h4>Komentarze:</h4>';
@@ -55,6 +55,11 @@ function displayPosts() {
         echo '</form>';
         echo '</div>';
         echo '</div>';
+        echo '<div class="rating">';
+        echo '<img src="upvote.png" alt="Upvote" class="upvote">';
+        echo '<span class="score">' . $post['score'] . '</span>';
+        echo '<img src="downvote.png" alt="Downvote" class="downvote">';
+        echo '</div>';
         echo '</div>';
     }
 }
@@ -66,6 +71,12 @@ function addComment($postIndex, $nick, $content) {
         'content' => htmlspecialchars($content)
     );
     $posts[$postIndex]['comments'][] = $comment;
+    file_put_contents('posts.txt', serialize($posts));
+}
+
+function updateScore($postIndex, $value) {
+    $posts = loadPosts();
+    $posts[$postIndex]['score'] += $value;
     file_put_contents('posts.txt', serialize($posts));
 }
 ?>

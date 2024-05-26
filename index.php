@@ -14,6 +14,44 @@
                 form.style.maxHeight = '0px';
             }
         }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const posts = document.querySelectorAll('.post');
+
+            posts.forEach(post => {
+                const upvoteButton = post.querySelector('.upvote');
+                const downvoteButton = post.querySelector('.downvote');
+                const scoreElement = post.querySelector('.score');
+
+                upvoteButton.addEventListener('click', () => {
+                    updateScore(post.dataset.index, 1);
+                });
+
+                downvoteButton.addEventListener('click', () => {
+                    updateScore(post.dataset.index, -1);
+                });
+            });
+        });
+
+        function updateScore(postIndex, value) {
+            fetch('rate_post.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ postIndex: postIndex, value: value })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    const post = document.querySelector(`.post[data-index='${postIndex}']`);
+                    const scoreElement = post.querySelector('.score');
+                    scoreElement.textContent = data.newScore;
+                } else {
+                    alert('Błąd przy aktualizacji oceny');
+                }
+            });
+        }
     </script>
 </head>
 <body>

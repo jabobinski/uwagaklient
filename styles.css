@@ -56,6 +56,7 @@ main {
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
 }
 
 .post-form {
@@ -65,7 +66,7 @@ main {
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     position: fixed;
-    top: 190px; /* Dostosowane */
+    top: 190px;
     right: 20px;
     z-index: 2;
 }
@@ -90,7 +91,7 @@ main {
     border-radius: 5px;
 }
 
-.post-form input[type="submit"] {
+post-form input[type="submit"] {
     background-color: #333;
     color: #fff;
     padding: 10px 20px;
@@ -111,6 +112,7 @@ main {
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
     word-wrap: break-word;
+    position: relative; /* Dodajemy względne pozycjonowanie */
 }
 
 .comments {
@@ -136,4 +138,23 @@ main {
     padding: 15px;
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    position: absolute; /* Dodajemy absolutne pozycjonowanie */
+    bottom: 10px;       /* Ustawiamy pozycję od dołu */
+    right: 10px;        /* Ustawiamy pozycję od prawej */
+}
+
+.rating img {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.rating .score {
+    margin: 0 10px;
+    font-size: 1.2em;
 }
