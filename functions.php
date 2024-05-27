@@ -1,10 +1,12 @@
 <?php
-function savePost($nick, $location, $title, $content) {
+function savePost($nick, $location, $title, $content, $shop, $customer_features) {
     $post = array(
         'nick' => htmlspecialchars($nick),
         'location' => htmlspecialchars($location),
         'title' => htmlspecialchars($title),
         'content' => htmlspecialchars($content),
+        'shop' => htmlspecialchars($shop),
+        'customer_features' => htmlspecialchars($customer_features),
         'date' => date('Y-m-d H:i:s'),
         'comments' => array(),
         'score' => 0 
@@ -33,6 +35,8 @@ function displayPosts($posts) {
         echo '<h3>' . $post['title'] . '</h3>';
         echo '<p><strong>Nick:</strong> ' . $post['nick'] . '</p>';
         echo '<p><strong>Lokalizacja:</strong> ' . $post['location'] . '</p>';
+        echo '<p><strong>Sklep:</strong> ' . $post['shop'] . '</p>';
+        echo '<p><strong>Cechy szczegółowe klienta:</strong> ' . nl2br($post['customer_features']) . '</p>';
         echo '<p><strong>Data:</strong> ' . $post['date'] . '</p>';
         echo '<p>' . nl2br($post['content']) . '</p>';
         echo '<div class="comments">';

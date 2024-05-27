@@ -2,8 +2,8 @@
 include 'functions.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['nick'], $_POST['location'], $_POST['title'], $_POST['content'])) {
-        savePost($_POST['nick'], $_POST['location'], $_POST['title'], $_POST['content']);
+    if (isset($_POST['nick'], $_POST['location'], $_POST['title'], $_POST['content'], $_POST['shop'], $_POST['customer_features'])) {
+        savePost($_POST['nick'], $_POST['location'], $_POST['title'], $_POST['content'], $_POST['shop'], $_POST['customer_features']);
     } elseif (isset($_POST['comment_nick'], $_POST['comment_content'], $_POST['post_index'])) {
         addComment($_POST['post_index'], $_POST['comment_nick'], $_POST['comment_content']);
     }
@@ -98,7 +98,6 @@ $cities = loadCities();
         <section class="posts">
             <h2>Posty</h2>
             <?php
-            include_once 'functions.php';
             displayPosts($filteredPosts);
             ?>
         </section>
@@ -114,6 +113,10 @@ $cities = loadCities();
                         <option value="<?php echo htmlspecialchars($city); ?>">
                     <?php endforeach; ?>
                 </datalist>
+                <label for="shop">Sklep:</label>
+                <input type="text" id="shop" name="shop" required>
+                <label for="customer_features">Cechy szczegółowe klienta:</label>
+                <textarea id="customer_features" name="customer_features" required></textarea>
                 <label for="title">Tytuł:</label>
                 <input type="text" id="title" name="title" required>
                 <label for="content">Treść:</label>
