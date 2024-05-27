@@ -27,8 +27,7 @@ function loadPosts() {
     return array();
 }
 
-function displayPosts() {
-    $posts = loadPosts();
+function displayPosts($posts) {
     foreach ($posts as $index => $post) {
         echo '<div class="post" data-index="' . $index . '">';
         echo '<h3>' . $post['title'] . '</h3>';
@@ -83,5 +82,13 @@ function updateScore($postIndex, $value) {
 function loadCities() {
     $cities = file('cities.txt', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
     return $cities;
+}
+
+function searchPostsByLocation($location) {
+    $posts = loadPosts();
+    $filteredPosts = array_filter($posts, function($post) use ($location) {
+        return stripos($post['location'], $location) !== false;
+    });
+    return $filteredPosts;
 }
 ?>

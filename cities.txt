@@ -8,3 +8,92 @@ Szczecin
 Bydgoszcz
 Lublin
 Katowice
+Katowice
+Gdynia
+Częstochowa
+Radom
+Sosnowiec
+Toruń
+Kielce
+Rzeszów
+Gliwice
+Zabrze
+Olsztyn
+Bielsko-Biała
+Bytom
+Zielona Góra
+Rybnik
+Tychy
+Gorzów Wielkopolski
+Dąbrowa Górnicza
+Elbląg
+Płock
+Opole
+Wałbrzych
+Włocławek
+Tarnów
+Chorzów
+Koszalin
+Kalisz
+Legnica
+Grudziądz
+Jaworzno
+Słupsk
+Jastrzębie-Zdrój
+Jelenia Góra
+Nowy Sącz
+Konin
+Piotrków Trybunalski
+Siedlce
+Inowrocław
+Mysłowice
+Piła
+Ostrowiec Świętokrzyski
+Ostrów Wielkopolski
+Siemianowice Śląskie
+Stargard
+Pabianice
+Gniezno
+Suwałki
+Chełm
+Zamość
+Łomża
+Przemyśl
+Ełk
+Tarnobrzeg
+Tomaszów Mazowiecki
+Stalowa Wola
+Kędzierzyn-Koźle
+Starachowice
+Zgierz
+Krosno
+Leszno
+Chrzanów
+Mielec
+Zawiercie
+Skarżysko-Kamienna
+Puławy
+Wodzisław Śląski
+Racibórz
+Kutno
+Biała Podlaska
+Tczew
+Piekary Śląskie
+Żory
+Żyrardów
+Nowa Sól
+Ełk
+Sandomierz
+Piaseczno
+Płock
+Jarosław
+Świdnica
+Włoszczowa
+Szczytno
+Oleśnica
+Nysa
+Braniewo
+Ostrołęka
+Lubin
+Kołobrzeg
+Dzierżoniów

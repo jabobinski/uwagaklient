@@ -11,6 +11,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
 }
 
+if (isset($_GET['search_location'])) {
+    $searchLocation = htmlspecialchars($_GET['search_location']);
+    $filteredPosts = searchPostsByLocation($searchLocation);
+} else {
+    $filteredPosts = loadPosts();
+}
+
 $cities = loadCities();
 ?>
 
@@ -81,18 +88,18 @@ $cities = loadCities();
             <li><a href="#">Usługi</a></li>
             <li><a href="#">Kontakt</a></li>
         </ul>
+        <form action="index.php" method="GET">
+            <label for="search_location">Szukaj po lokalizacji:</label>
+            <input type="text" id="search_location" name="search_location" required>
+            <input type="submit" value="Szukaj">
+        </form>
     </nav>
     <main>
         <section class="posts">
             <h2>Posty</h2>
             <?php
             include_once 'functions.php';
-            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nick'], $_POST['location'], $_POST['title'], $_POST['content'])) {
-                savePost($_POST['nick'], $_POST['location'], $_POST['title'], $_POST['content']);
-            } elseif ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comment_nick'], $_POST['comment_content'], $_POST['post_index'])) {
-                addComment($_POST['post_index'], $_POST['comment_nick'], $_POST['comment_content']);
-            }
-            displayPosts();
+            displayPosts($filteredPosts);
             ?>
         </section>
         <section class="post-form">
