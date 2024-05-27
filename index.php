@@ -15,6 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
 }
 
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 if (isset($_GET['search_location'])) {
     $searchLocation = htmlspecialchars($_GET['search_location']);
     $filteredPosts = searchPostsByLocation($searchLocation);
@@ -43,33 +44,34 @@ $cities = loadCities();
         }
 
         function toggleImage(postIndex) {
-            var imageDiv = document.getElementById('image-' + postIndex);
-            if (imageDiv.style.display === 'none' || imageDiv.style.display === '') {
-                imageDiv.style.display = 'block';
+            var image = document.getElementById('image-' + postIndex);
+            if (image.style.maxHeight === '0px' || image.style.maxHeight === '') {
+                image.style.maxHeight = image.scrollHeight + 'px';
             } else {
-                imageDiv.style.display = 'none';
+                image.style.maxHeight = '0px';
             }
         }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            const posts = document.querySelectorAll('.post');
-
-            posts.forEach(post => {
-                const upvoteButton = post.querySelector('.upvote');
-                const downvoteButton = post.querySelector('.downvote');
-                const scoreElement = post.querySelector('.score');
-
-                upvoteButton.addEventListener('click', () => {
-                    updateScore(post.dataset.index, 1);
+        document.addEventListener('DOMContentLoaded', function() {
+            var upvoteButtons = document.querySelectorAll('.upvote');
+            var downvoteButtons = document.querySelectorAll('.downvote');
+            
+            upvoteButtons.forEach(function(button) {
+                button.addEventListener('click', function() {
+                    var postIndex = this.closest('.post').getAttribute('data-index');
+                    Score(postIndex, 1);
                 });
-
-                downvoteButton.addEventListener('click', () => {
-                    updateScore(post.dataset.index, -1);
+            });
+            
+            downvoteButtons.forEach(function(button) {
+                button.addEventListener('click', function() {
+                    var postIndex = this.closest('.post').getAttribute('data-index');
+                    Score(postIndex, -1);
                 });
             });
         });
 
-        function updateScore(postIndex, value) {
+        function Score(postIndex, value) {
             fetch('rate_post.php', {
                 method: 'POST',
                 headers: {
@@ -111,7 +113,7 @@ $cities = loadCities();
         <section class="posts">
             <h2>Posty</h2>
             <?php
-            displayPosts($filteredPosts);
+            displayPosts($filteredPosts, $page);
             ?>
         </section>
         <section class="post-form">

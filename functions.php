@@ -49,9 +49,15 @@ function loadPosts() {
     return array();
 }
 
-function displayPosts($posts) {
-    foreach ($posts as $index => $post) {
-        echo '<div class="post" data-index="' . $index . '">';
+function displayPosts($posts, $page = 1, $postsPerPage = 10) {
+    $totalPosts = count($posts);
+    $totalPages = ceil($totalPosts / $postsPerPage);
+    $start = ($page - 1) * $postsPerPage;
+    $end = min($start + $postsPerPage, $totalPosts);
+
+    for ($i = $start; $i < $end; $i++) {
+        $post = $posts[$i];
+        echo '<div class="post" data-index="' . $i . '">';
         echo '<h3>' . $post['title'] . '</h3>';
         echo '<p><strong>Nick:</strong> ' . $post['nick'] . '</p>';
         echo '<p><strong>Lokalizacja:</strong> ' . $post['location'] . '</p>';
@@ -60,8 +66,8 @@ function displayPosts($posts) {
         echo '<p><strong>Data:</strong> ' . $post['date'] . '</p>';
         echo '<p>' . nl2br($post['content']) . '</p>';
         if ($post['image']) {
-            echo '<p><button onclick="toggleImage(' . $index . ')">Zobacz zdjęcie</button></p>';
-            echo '<div id="image-' . $index . '" class="post-image"><img src="' . htmlspecialchars($post['image']) . '" alt="Zdjęcie załączone do posta"></div>';
+            echo '<p><button onclick="toggleImage(' . $i . ')">Zobacz zdjęcie</button></p>';
+            echo '<div id="image-' . $i . '" class="post-image"><img src="' . htmlspecialchars($post['image']) . '" alt="Zdjęcie załączone do posta"></div>';
         }
         echo '<div class="comments">';
         echo '<h4>Komentarze:</h4>';
@@ -70,10 +76,10 @@ function displayPosts($posts) {
             echo '<p><strong>' . $comment['nick'] . ':</strong> ' . $comment['content'] . '</p>';
             echo '</div>';
         }
-        echo '<button class="comment-button" onclick="toggleCommentForm(' . $index . ')">Skomentuj</button>';
-        echo '<div id="comment-form-' . $index . '" class="comment-form">';
+        echo '<button class="comment-button" onclick="toggleCommentForm(' . $i . ')">Skomentuj</button>';
+        echo '<div id="comment-form-' . $i . '" class="comment-form">';
         echo '<form action="index.php" method="POST">';
-        echo '<input type="hidden" name="post_index" value="' . $index . '">';
+        echo '<input type="hidden" name="post_index" value="' . $i . '">';
         echo '<label for="comment_nick">Nick:</label>';
         echo '<input type="text" id="comment_nick" name="comment_nick" required>';
         echo '<label for="comment_content">Treść:</label>';
@@ -89,6 +95,22 @@ function displayPosts($posts) {
         echo '</div>';
         echo '</div>';
     }
+
+    echo '<div class="pagination">';
+    if ($page > 1) {
+        echo '<a href="?page=' . ($page - 1) . '">&laquo; Poprzednia</a>';
+    }
+    for ($i = 1; $i <= $totalPages; $i++) {
+        if ($i == $page) {
+            echo '<span class="current-page">' . $i . '</span>';
+        } else {
+            echo '<a href="?page=' . $i . '">' . $i . '</a>';
+        }
+    }
+    if ($page < $totalPages) {
+        echo '<a href="?page=' . ($page + 1) . '">Następna &raquo;</a>';
+    }
+    echo '</div>';
 }
 
 function addComment($postIndex, $nick, $content) {
