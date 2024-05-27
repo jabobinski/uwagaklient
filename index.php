@@ -3,7 +3,11 @@ include 'functions.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['nick'], $_POST['location'], $_POST['title'], $_POST['content'], $_POST['shop'], $_POST['customer_features'])) {
-        savePost($_POST['nick'], $_POST['location'], $_POST['title'], $_POST['content'], $_POST['shop'], $_POST['customer_features']);
+        $image = null;
+        if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+            $image = saveImage($_FILES['image']);
+        }
+        savePost($_POST['nick'], $_POST['location'], $_POST['title'], $_POST['content'], $_POST['shop'], $_POST['customer_features'], $image);
     } elseif (isset($_POST['comment_nick'], $_POST['comment_content'], $_POST['post_index'])) {
         addComment($_POST['post_index'], $_POST['comment_nick'], $_POST['comment_content']);
     }
@@ -35,6 +39,15 @@ $cities = loadCities();
                 form.style.maxHeight = form.scrollHeight + 'px';
             } else {
                 form.style.maxHeight = '0px';
+            }
+        }
+
+        function toggleImage(postIndex) {
+            var imageDiv = document.getElementById('image-' + postIndex);
+            if (imageDiv.style.display === 'none' || imageDiv.style.display === '') {
+                imageDiv.style.display = 'block';
+            } else {
+                imageDiv.style.display = 'none';
             }
         }
 
@@ -103,7 +116,7 @@ $cities = loadCities();
         </section>
         <section class="post-form">
             <h2>Napisz Post</h2>
-            <form action="index.php" method="POST">
+            <form action="index.php" method="POST" enctype="multipart/form-data">
                 <label for="nick">Nick:</label>
                 <input type="text" id="nick" name="nick" required>
                 <label for="location">Lokalizacja:</label>
@@ -121,6 +134,8 @@ $cities = loadCities();
                 <input type="text" id="title" name="title" required>
                 <label for="content">Treść:</label>
                 <textarea id="content" name="content" required></textarea>
+                <label for="image">Załącz zdjęcie:</label>
+                <input type="file" id="image" name="image">
                 <input type="submit" value="Opublikuj">
             </form>
         </section>

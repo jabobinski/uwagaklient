@@ -1,5 +1,5 @@
 <?php
-function savePost($nick, $location, $title, $content, $shop, $customer_features) {
+function savePost($nick, $location, $title, $content, $shop, $customer_features, $image = null) {
     $post = array(
         'nick' => htmlspecialchars($nick),
         'location' => htmlspecialchars($location),
@@ -9,11 +9,31 @@ function savePost($nick, $location, $title, $content, $shop, $customer_features)
         'customer_features' => htmlspecialchars($customer_features),
         'date' => date('Y-m-d H:i:s'),
         'comments' => array(),
-        'score' => 0 
+        'score' => 0,
+        'image' => $image 
     );
     $posts = loadPosts();
     $posts[] = $post;
     file_put_contents('posts.txt', serialize($posts));
+}
+
+function saveImage($imageFile) {
+    $targetDir = "uploads/";
+    // Create the uploads directory if it doesn't exist
+    if (!file_exists($targetDir)) {
+        mkdir($targetDir, 0777, true);
+    }
+    $targetFile = $targetDir . basename($imageFile["name"]);
+    $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
+
+    // Check if image file is a actual image or fake image
+    $check = getimagesize($imageFile["tmp_name"]);
+    if ($check !== false) {
+        if (move_uploaded_file($imageFile["tmp_name"], $targetFile)) {
+            return $targetFile;
+        }
+    }
+    return null;
 }
 
 function loadPosts() {
@@ -39,6 +59,10 @@ function displayPosts($posts) {
         echo '<p><strong>Cechy szczegółowe klienta:</strong> ' . nl2br($post['customer_features']) . '</p>';
         echo '<p><strong>Data:</strong> ' . $post['date'] . '</p>';
         echo '<p>' . nl2br($post['content']) . '</p>';
+        if ($post['image']) {
+            echo '<p><button onclick="toggleImage(' . $index . ')">Zobacz zdjęcie</button></p>';
+            echo '<div id="image-' . $index . '" class="post-image"><img src="' . htmlspecialchars($post['image']) . '" alt="Zdjęcie załączone do posta"></div>';
+        }
         echo '<div class="comments">';
         echo '<h4>Komentarze:</h4>';
         foreach ($post['comments'] as $comment) {
