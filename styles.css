@@ -1,151 +1,182 @@
 body {
     font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
 }
 
 header {
-    background-color: #333;
+    background-color: #007bff;
     color: #fff;
-    padding: 20px 0;
+    padding: 1rem;
     text-align: center;
-    z-index: 1;
-    position: relative;
+}
+
+header h1 {
+    margin: 0;
 }
 
 nav {
-    background-color: #444;
-    z-index: 1;
-    position: relative;
+    background-color: #343a40;
+    padding: 0.5rem 1rem;
 }
 
 nav ul {
     list-style: none;
-    padding: 0;
     margin: 0;
+    padding: 0;
     display: flex;
     justify-content: center;
 }
 
 nav ul li {
-    margin: 0 15px;
+    margin: 0 1rem;
 }
 
 nav ul li a {
     color: #fff;
     text-decoration: none;
-    padding: 15px 0;
+    padding: 0.5rem 1rem;
     display: block;
 }
 
 nav ul li a:hover {
-    background-color: #555;
+    background-color: #495057;
+    border-radius: 4px;
+}
+
+nav form {
+    margin-top: 0.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+nav form input[type="text"] {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+nav form input[type="submit"] {
+    padding: 0.5rem 1rem;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+nav form input[type="submit"]:hover {
+    background-color: #0056b3;
 }
 
 main {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
+    padding: 2rem;
+    max-width: 800px;
+    margin: auto;
 }
 
-.posts {
-    width: 60%;
-    background: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    position: relative;
+section.posts {
+    margin-bottom: 2rem;
 }
 
-.post-form {
-    width: 35%;
-    background: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    position: fixed;
-    top: 190px;
-    right: 20px;
-    z-index: 2;
-}
-
-.post-form h2,
-.posts h2 {
-    margin-top: 0;
-}
-
-.post-form label {
-    display: block;
-    margin-top: 10px;
-}
-
-.post-form input[type="text"],
-.post-form textarea {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-post-form input[type="submit"] {
-    background-color: #333;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.post-form input[type="submit"]:hover {
-    background-color: #555;
+section.posts h2,
+section.post-form h2 {
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
 }
 
 .post {
-    background: #f9f9f9;
-    padding: 15px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    word-wrap: break-word;
-    position: relative;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.post h3 {
+    margin-top: 0;
+}
+
+.post p {
+    line-height: 1.6;
+}
+
+.post-image {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    margin-top: 1rem;
+}
+
+.post-image img {
+    width: 100%;
+    border-radius: 4px;
 }
 
 .comments {
-    margin-top: 10px;
+    margin-top: 1rem;
+}
+
+.comments h4 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #007bff;
 }
 
 .comment {
-    background: #f1f1f1;
-    padding: 10px;
-    border-radius: 5px;
-    margin-top: 5px;
+    background-color: #f4f4f9;
+    border-left: 4px solid #007bff;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    border-radius: 4px;
+}
+
+.comment p {
+    margin: 0;
 }
 
 .comment-form {
-    overflow: hidden;
     max-height: 0;
-    transition: max-height 0.5s ease-out;
-    margin-top: 10px;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    margin-top: 1rem;
 }
 
 .comment-form form {
-    background: #f9f9f9;
-    padding: 15px;
-    border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.comment-form input[type="text"],
+.comment-form textarea {
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.comment-form input[type="submit"] {
+    padding: 0.5rem 1rem;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.comment-form input[type="submit"]:hover {
+    background-color: #0056b3;
 }
 
 .rating {
     display: flex;
     align-items: center;
-    position: absolute; 
-    bottom: 10px;   
-    right: 10px;      
+    margin-top: 0.5rem;
 }
 
 .rating img {
@@ -155,39 +186,138 @@ post-form input[type="submit"] {
 }
 
 .rating .score {
-    margin: 0 10px;
-    font-size: 1.2em;
-}
-
-.post-image {
-    display: none;
-    margin-top: 10px;
-}
-
-.post-image img {
-    max-width: 100%;
-    height: auto;
+    margin: 0 0.5rem;
 }
 
 .pagination {
     display: flex;
     justify-content: center;
-    margin: 20px 0;
+    margin-top: 2rem;
 }
 
-.pagination a, .pagination span {
-    margin: 0 5px;
-    padding: 10px 15px;
-    border: 1px solid #ddd;
+.pagination a,
+.pagination span {
+    margin: 0 0.25rem;
+    padding: 0.5rem 1rem;
     text-decoration: none;
-    color: #333;
+    color: #007bff;
+    border: 1px solid #007bff;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
 }
 
 .pagination a:hover {
-    background-color: #f1f1f1;
+    background-color: #007bff;
+    color: #fff;
 }
 
 .pagination .current-page {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.open-post-form {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.open-post-form:hover {
+    background-color: #0056b3;
+}
+
+.post-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+    transition: opacity 0.3s ease;
+    opacity: 0;
+}
+
+.post-modal.visible {
+    opacity: 1;
+}
+
+.post-modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 8px;
+    position: relative;
+}
+
+.post-modal .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
     font-weight: bold;
-    background-color: #ddd;
+}
+
+.post-modal .close:hover,
+.post-modal .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+form .form-group {
+    margin-bottom: 1rem;
+}
+
+form .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+form .form-group input,
+form .form-group textarea,
+form .form-group select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+form .form-group input[type="file"] {
+    padding: 0;
+}
+
+.submit-btn {
+    padding: 0.75rem 1.5rem;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    width: 100%;
+}
+
+.submit-btn:hover {
+    background-color: #0056b3;
+}
+
+footer {
+    background-color: #343a40;
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+    position: relative;
+    bottom: 0;
+    width: 100%;
 }

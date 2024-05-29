@@ -52,6 +52,22 @@ $cities = loadCities();
             }
         }
 
+        function showPostForm() {
+            var modal = document.getElementById('post-modal');
+            modal.style.display = 'block';
+            setTimeout(() => {
+                modal.classList.add('visible');
+            }, 10);
+        }
+
+        function hidePostForm() {
+            var modal = document.getElementById('post-modal');
+            modal.classList.remove('visible');
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
             var upvoteButtons = document.querySelectorAll('.upvote');
             var downvoteButtons = document.querySelectorAll('.downvote');
@@ -110,38 +126,56 @@ $cities = loadCities();
         </form>
     </nav>
     <main>
+        <button class="open-post-form" onclick="showPostForm()">Napisz Post</button>
         <section class="posts">
             <h2>Posty</h2>
             <?php
             displayPosts($filteredPosts, $page);
             ?>
         </section>
-        <section class="post-form">
+    </main>
+    <div id="post-modal" class="post-modal">
+        <div class="post-modal-content">
+            <span class="close" onclick="hidePostForm()">&times;</span>
             <h2>Napisz Post</h2>
             <form action="index.php" method="POST" enctype="multipart/form-data">
-                <label for="nick">Nick:</label>
-                <input type="text" id="nick" name="nick" required>
-                <label for="location">Lokalizacja:</label>
-                <input list="cities" id="location" name="location" required>
-                <datalist id="cities">
-                    <?php foreach ($cities as $city): ?>
-                        <option value="<?php echo htmlspecialchars($city); ?>">
-                    <?php endforeach; ?>
-                </datalist>
-                <label for="shop">Sklep:</label>
-                <input type="text" id="shop" name="shop" required>
-                <label for="customer_features">Cechy szczegółowe klienta:</label>
-                <textarea id="customer_features" name="customer_features" required></textarea>
-                <label for="title">Tytuł:</label>
-                <input type="text" id="title" name="title" required>
-                <label for="content">Treść:</label>
-                <textarea id="content" name="content" required></textarea>
-                <label for="image">Załącz zdjęcie:</label>
-                <input type="file" id="image" name="image">
-                <input type="submit" value="Opublikuj">
+                <div class="form-group">
+                    <label for="nick">Nick:</label>
+                    <input type="text" id="nick" name="nick" required>
+                </div>
+                <div class="form-group">
+                    <label for="location">Lokalizacja:</label>
+                    <input list="cities" id="location" name="location" required>
+                    <datalist id="cities">
+                        <?php foreach ($cities as $city): ?>
+                            <option value="<?php echo htmlspecialchars($city); ?>">
+                        <?php endforeach; ?>
+                    </datalist>
+                </div>
+                <div class="form-group">
+                    <label for="shop">Sklep:</label>
+                    <input type="text" id="shop" name="shop" required>
+                </div>
+                <div class="form-group">
+                    <label for="customer_features">Cechy szczegółowe klienta:</label>
+                    <textarea id="customer_features" name="customer_features" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="title">Tytuł:</label>
+                    <input type="text" id="title" name="title" required>
+                </div>
+                <div class="form-group">
+                    <label for="content">Treść:</label>
+                    <textarea id="content" name="content" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="image">Załącz zdjęcie:</label>
+                    <input type="file" id="image" name="image">
+                </div>
+                <input type="submit" value="Opublikuj" class="submit-btn">
             </form>
-        </section>
-    </main>
+        </div>
+    </div>
     <footer>
         <p>&copy; Uwaga Klient. Wszelkie prawa zastrzeżone.</p>
     </footer>
