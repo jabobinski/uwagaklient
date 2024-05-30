@@ -43,6 +43,13 @@ function loadPosts() {
             usort($posts, function($a, $b) {
                 return strtotime($b['date']) - strtotime($a['date']);
             });
+
+            foreach ($posts as &$post) {
+                if (!isset($post['comments']) || !is_array($post['comments'])) {
+                    $post['comments'] = array();
+                }
+            }
+
             return $posts;
         }
     }
@@ -71,10 +78,13 @@ function displayPosts($posts, $page = 1, $postsPerPage = 10) {
         }
         echo '<div class="comments">';
         echo '<h4>Komentarze:</h4>';
-        foreach ($post['comments'] as $comment) {
-            echo '<div class="comment">';
-            echo '<p><strong>' . $comment['nick'] . ':</strong> ' . $comment['content'] . '</p>';
-            echo '</div>';
+        // Sprawdzenie czy `comments` jest tablicą
+        if (isset($post['comments']) && is_array($post['comments'])) {
+            foreach ($post['comments'] as $comment) {
+                echo '<div class="comment">';
+                echo '<p><strong>' . $comment['nick'] . ':</strong> ' . $comment['content'] . '</p>';
+                echo '</div>';
+            }
         }
         echo '<button class="comment-button" onclick="toggleCommentForm(' . $i . ')">Skomentuj</button>';
         echo '<div id="comment-form-' . $i . '" class="comment-form">';
