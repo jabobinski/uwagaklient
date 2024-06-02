@@ -16,8 +16,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-if (isset($_GET['search_location'])) {
-    $searchLocation = htmlspecialchars($_GET['search_location']);
+$searchLocation = isset($_GET['search_location']) ? htmlspecialchars($_GET['search_location']) : '';
+
+if (!empty($searchLocation)) {
     $filteredPosts = searchPostsByLocation($searchLocation);
 } else {
     $filteredPosts = loadPosts();
@@ -121,7 +122,7 @@ $cities = loadCities();
         </ul>
         <form action="index.php" method="GET">
             <label for="search_location">Szukaj po lokalizacji:</label>
-            <input type="text" id="search_location" name="search_location" required>
+            <input type="text" id="search_location" name="search_location" value="<?php echo htmlspecialchars($searchLocation); ?>" required>
             <input type="submit" value="Szukaj">
         </form>
     </nav>
@@ -130,7 +131,11 @@ $cities = loadCities();
         <section class="posts">
             <h2>Posty</h2>
             <?php
-            displayPosts($filteredPosts, $page);
+            if (!empty($filteredPosts)) {
+                displayPosts($filteredPosts, $page);
+            } else {
+                echo '<p>Brak postów do wyświetlenia.</p>';
+            }
             ?>
         </section>
     </main>

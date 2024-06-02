@@ -45,14 +45,25 @@ function loadPosts() {
     if (file_exists('posts.txt')) {
         $posts = unserialize(file_get_contents('posts.txt'));
         if ($posts !== false) {
+            // Sortowanie postów po dacie
             usort($posts, function($a, $b) {
                 return strtotime($b['date']) - strtotime($a['date']);
             });
 
+            // Sprawdzenie kompletności danych postów
             foreach ($posts as &$post) {
+                if (!isset($post['nick'])) $post['nick'] = '';
+                if (!isset($post['location'])) $post['location'] = '';
+                if (!isset($post['title'])) $post['title'] = '';
+                if (!isset($post['content'])) $post['content'] = '';
+                if (!isset($post['shop'])) $post['shop'] = '';
+                if (!isset($post['customer_features'])) $post['customer_features'] = '';
+                if (!isset($post['date'])) $post['date'] = date('Y-m-d H:i:s');
                 if (!isset($post['comments']) || !is_array($post['comments'])) {
                     $post['comments'] = array();
                 }
+                if (!isset($post['score'])) $post['score'] = 0;
+                if (!isset($post['image'])) $post['image'] = null;
             }
 
             return $posts;
@@ -165,7 +176,12 @@ function loadCities() {
 function searchPostsByLocation($location) {
     $posts = loadPosts();
     $filteredPosts = array_filter($posts, function($post) use ($location) {
-        return stripos($post['location'], $location) !== false;
+        return stripos($post['location'], $location) !== false && 
+               !empty($post['title']) && 
+               !empty($post['content']) &&
+               !empty($post['nick']) &&
+               !empty($post['shop']) &&
+               !empty($post['customer_features']);
     });
     return $filteredPosts;
 }
