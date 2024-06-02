@@ -1,4 +1,5 @@
 <?php
+
 function savePost($nick, $location, $title, $content, $shop, $customer_features, $image = null) {
     $post = array(
         'nick' => htmlspecialchars($nick),
@@ -12,9 +13,13 @@ function savePost($nick, $location, $title, $content, $shop, $customer_features,
         'score' => 0,
         'image' => $image 
     );
+    
+    // Load existing posts
     $posts = loadPosts();
+    // Add new post
     $posts[] = $post;
-    file_put_contents('posts.txt', serialize($posts));
+    // Save updated posts
+    savePosts($posts);
 }
 
 function saveImage($imageFile) {
@@ -56,6 +61,16 @@ function loadPosts() {
     return array();
 }
 
+function savePosts($posts) {
+    // Save posts with proper locking
+    $file = fopen('posts.txt', 'w');
+    if (flock($file, LOCK_EX)) {  // acquire an exclusive lock
+        fwrite($file, serialize($posts));
+        flock($file, LOCK_UN);    // release the lock
+    }
+    fclose($file);
+}
+
 function displayPosts($posts, $page = 1, $postsPerPage = 10) {
     $totalPosts = count($posts);
     $totalPages = ceil($totalPosts / $postsPerPage);
@@ -65,24 +80,23 @@ function displayPosts($posts, $page = 1, $postsPerPage = 10) {
     for ($i = $start; $i < $end; $i++) {
         $post = $posts[$i];
         echo '<div class="post" data-index="' . $i . '">';
-        echo '<h3>' . $post['title'] . '</h3>';
-        echo '<p><strong>Nick:</strong> ' . $post['nick'] . '</p>';
-        echo '<p><strong>Lokalizacja:</strong> ' . $post['location'] . '</p>';
-        echo '<p><strong>Sklep:</strong> ' . $post['shop'] . '</p>';
-        echo '<p><strong>Cechy szczegółowe klienta:</strong> ' . nl2br($post['customer_features']) . '</p>';
-        echo '<p><strong>Data:</strong> ' . $post['date'] . '</p>';
-        echo '<p>' . nl2br($post['content']) . '</p>';
+        echo '<h3>' . htmlspecialchars($post['title']) . '</h3>';
+        echo '<p><strong>Nick:</strong> ' . htmlspecialchars($post['nick']) . '</p>';
+        echo '<p><strong>Lokalizacja:</strong> ' . htmlspecialchars($post['location']) . '</p>';
+        echo '<p><strong>Sklep:</strong> ' . htmlspecialchars($post['shop']) . '</p>';
+        echo '<p><strong>Cechy szczegółowe klienta:</strong> ' . nl2br(htmlspecialchars($post['customer_features'])) . '</p>';
+        echo '<p><strong>Data:</strong> ' . htmlspecialchars($post['date']) . '</p>';
+        echo '<p>' . nl2br(htmlspecialchars($post['content'])) . '</p>';
         if ($post['image']) {
             echo '<p><button onclick="toggleImage(' . $i . ')">Zobacz zdjęcie</button></p>';
             echo '<div id="image-' . $i . '" class="post-image"><img src="' . htmlspecialchars($post['image']) . '" alt="Zdjęcie załączone do posta"></div>';
         }
         echo '<div class="comments">';
         echo '<h4>Komentarze:</h4>';
-        // Sprawdzenie czy `comments` jest tablicą
         if (isset($post['comments']) && is_array($post['comments'])) {
             foreach ($post['comments'] as $comment) {
                 echo '<div class="comment">';
-                echo '<p><strong>' . $comment['nick'] . ':</strong> ' . $comment['content'] . '</p>';
+                echo '<p><strong>' . htmlspecialchars($comment['nick']) . ':</strong> ' . htmlspecialchars($comment['content']) . '</p>';
                 echo '</div>';
             }
         }
@@ -100,7 +114,7 @@ function displayPosts($posts, $page = 1, $postsPerPage = 10) {
         echo '</div>';
         echo '<div class="rating">';
         echo '<img src="upvote.png" alt="Upvote" class="upvote">';
-        echo '<span class="score">' . $post['score'] . '</span>';
+        echo '<span class="score">' . htmlspecialchars($post['score']) . '</span>';
         echo '<img src="downvote.png" alt="Downvote" class="downvote">';
         echo '</div>';
         echo '</div>';
@@ -129,14 +143,18 @@ function addComment($postIndex, $nick, $content) {
         'nick' => htmlspecialchars($nick),
         'content' => htmlspecialchars($content)
     );
-    $posts[$postIndex]['comments'][] = $comment;
-    file_put_contents('posts.txt', serialize($posts));
+    if (isset($posts[$postIndex])) {
+        $posts[$postIndex]['comments'][] = $comment;
+        savePosts($posts);
+    }
 }
 
 function updateScore($postIndex, $value) {
     $posts = loadPosts();
-    $posts[$postIndex]['score'] += $value;
-    file_put_contents('posts.txt', serialize($posts));
+    if (isset($posts[$postIndex])) {
+        $posts[$postIndex]['score'] += $value;
+        savePosts($posts);
+    }
 }
 
 function loadCities() {
