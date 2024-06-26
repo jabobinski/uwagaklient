@@ -122,7 +122,7 @@ $cities = loadCities();
     </header>
     <nav>
         <ul>
-            <li><a href="#">Posty</a></li>
+            <li><a href="index.php">Posty</a></li>
             <li><a href="#">O nas</a></li>
             <li><a href="#">Usługi</a></li>
             <li><a href="#">Kontakt</a></li>
