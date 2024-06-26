@@ -4,9 +4,6 @@ body {
     color: #333;
     margin: 0;
     padding: 0;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
 }
 
 header {
@@ -84,7 +81,22 @@ main {
 
 section.posts {
     margin-bottom: 2rem;
+    min-width: 100%; /* Dodane, aby sekcja postów miała stałą szerokość */
 }
+
+section.posts .post {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    word-wrap: break-word;
+    word-break: break-word;
+    width: 100% !important; /* Dodane, aby posty miały stałą szerokość */
+    box-sizing: border-box; /* Zapewnia, że padding i border są wliczane do szerokości */
+}
+
 
 section.posts h2,
 section.post-form h2 {
@@ -100,8 +112,10 @@ section.post-form h2 {
     padding: 1rem;
     margin-bottom: 1rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    word-wrap: break-word; /* Dodane dla zawijania tekstu */
-    word-break: break-word; /* Dodane dla zawijania tekstu */
+    word-wrap: break-word;
+    word-break: break-word;
+    width: 100%; /* Dodane, aby posty miały stałą szerokość */
+    box-sizing: border-box; /* Zapewnia, że padding i border są wliczane do szerokości */
 }
 
 .post h3 {
@@ -140,8 +154,8 @@ section.post-form h2 {
     padding: 0.5rem;
     margin-top: 0.5rem;
     border-radius: 4px;
-    word-wrap: break-word; /* Dodane dla zawijania tekstu */
-    word-break: break-word; /* Dodane dla zawijania tekstu */
+    word-wrap: break-word;
+    word-break: break-word;
 }
 
 .comment p {

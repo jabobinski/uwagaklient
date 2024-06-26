@@ -197,8 +197,5 @@ $cities = loadCities();
             </form>
         </div>
     </div>
-    <footer>
-        <p>&copy; Uwaga Klient. Wszelkie prawa zastrzeżone.</p>
-    </footer>
 </body>
 </html>
