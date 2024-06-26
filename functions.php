@@ -41,16 +41,20 @@ function saveImage($imageFile) {
     return null;
 }
 
-function loadPosts() {
+function loadPosts($sort = 'date') {
     if (file_exists('posts.txt')) {
         $posts = unserialize(file_get_contents('posts.txt'));
         if ($posts !== false) {
-            // Sortowanie postów po dacie
-            usort($posts, function($a, $b) {
-                return strtotime($b['date']) - strtotime($a['date']);
-            });
-
-            // Sprawdzenie kompletności danych postów
+            if ($sort == 'score') {
+                usort($posts, function($a, $b) {
+                    return $b['score'] - $a['score'];
+                });
+            } else {
+                usort($posts, function($a, $b) {
+                    return strtotime($b['date']) - strtotime($a['date']);
+                });
+            }
+            // Reszta funkcji pozostaje bez zmian
             foreach ($posts as &$post) {
                 if (!isset($post['nick'])) $post['nick'] = '';
                 if (!isset($post['location'])) $post['location'] = '';
@@ -65,7 +69,6 @@ function loadPosts() {
                 if (!isset($post['score'])) $post['score'] = 0;
                 if (!isset($post['image'])) $post['image'] = null;
             }
-
             return $posts;
         }
     }
@@ -87,6 +90,15 @@ function displayPosts($posts, $page = 1, $postsPerPage = 10) {
     $totalPages = ceil($totalPosts / $postsPerPage);
     $start = ($page - 1) * $postsPerPage;
     $end = min($start + $postsPerPage, $totalPosts);
+
+    usort($posts, function($a, $b) {
+        global $sort;
+        if ($sort == 'score') {
+            return $b['score'] - $a['score'];
+        } else { // Default to sort by date
+            return strtotime($b['date']) - strtotime($a['date']);
+        }
+    });
 
     for ($i = $start; $i < $end; $i++) {
         $post = $posts[$i];
@@ -118,7 +130,7 @@ function displayPosts($posts, $page = 1, $postsPerPage = 10) {
         echo '<label for="comment_nick">Nick:</label>';
         echo '<input type="text" id="comment_nick" name="comment_nick" required>';
         echo '<label for="comment_content">Treść:</label>';
-        echo '<textarea id="comment_content" name="comment_content" required></textarea>';
+        echo '<textarea id="comment_content" name="comment_content" maxlength="100" required></textarea>';
         echo '<input type="submit" value="Dodaj komentarz">';
         echo '</form>';
         echo '</div>';
@@ -149,6 +161,10 @@ function displayPosts($posts, $page = 1, $postsPerPage = 10) {
 }
 
 function addComment($postIndex, $nick, $content) {
+    if (strlen($content) > 100) {
+        // Zwróć błąd, jeśli komentarz przekracza 250 znaków
+        return false;
+    }
     $posts = loadPosts();
     $comment = array(
         'nick' => htmlspecialchars($nick),

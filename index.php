@@ -17,11 +17,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $searchLocation = isset($_GET['search_location']) ? htmlspecialchars($_GET['search_location']) : '';
+$sort = isset($_GET['sort']) ? $_GET['sort'] : 'date';
 
 if (!empty($searchLocation)) {
     $filteredPosts = searchPostsByLocation($searchLocation);
 } else {
-    $filteredPosts = loadPosts();
+    $filteredPosts = loadPosts($sort);
 }
 
 $cities = loadCities();
@@ -67,6 +68,12 @@ $cities = loadCities();
             setTimeout(() => {
                 modal.style.display = 'none';
             }, 300);
+        }
+
+        function sortPostsBy(criteria) {
+            var form = document.getElementById('sort-form');
+            form.sort.value = criteria;
+            form.submit();
         }
 
         document.addEventListener('DOMContentLoaded', function() {
@@ -120,10 +127,19 @@ $cities = loadCities();
             <li><a href="#">Usługi</a></li>
             <li><a href="#">Kontakt</a></li>
         </ul>
-        <form action="index.php" method="GET">
+        <form id="search-form" action="index.php" method="GET">
             <label for="search_location">Szukaj po lokalizacji:</label>
             <input type="text" id="search_location" name="search_location" value="<?php echo htmlspecialchars($searchLocation); ?>" required>
             <input type="submit" value="Szukaj">
+        </form>
+        <div class="sort-buttons">
+            <span>Sortuj według:</span>
+            <button type="button" class="sort-button" onclick="sortPostsBy('score')">Ocen</button>
+            <button type="button" class="sort-button" onclick="sortPostsBy('date')">Najnowszych</button>
+        </div>
+        <form id="sort-form" action="index.php" method="GET" style="display: none;">
+            <input type="hidden" name="search_location" value="<?php echo htmlspecialchars($searchLocation); ?>">
+            <input type="hidden" name="sort" value="">
         </form>
     </nav>
     <main>
