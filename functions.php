@@ -14,7 +14,6 @@ function savePost($nick, $location, $title, $content, $shop, $customer_features,
         'image' => $image 
     );
     
-    // Load existing posts
     $posts = loadPosts();
     // Add new post
     $posts[] = $post;
