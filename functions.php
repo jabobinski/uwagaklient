@@ -84,7 +84,7 @@ function savePosts($posts) {
     fclose($file);
 }
 
-function displayPosts($posts, $page = 1, $postsPerPage = 10) {
+function displayPosts($posts, $page = 1, $postsPerPage = 5) {
     $totalPosts = count($posts);
     $totalPages = ceil($totalPosts / $postsPerPage);
     $start = ($page - 1) * $postsPerPage;
