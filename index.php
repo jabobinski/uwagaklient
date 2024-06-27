@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'functions.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -10,6 +11,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         savePost($_POST['nick'], $_POST['location'], $_POST['title'], $_POST['content'], $_POST['shop'], $_POST['customer_features'], $image);
     } elseif (isset($_POST['comment_nick'], $_POST['comment_content'], $_POST['post_index'])) {
         addComment($_POST['post_index'], $_POST['comment_nick'], $_POST['comment_content']);
+    } elseif (isset($_POST['delete_post_index']) && isset($_SESSION['admin']) && $_SESSION['admin']) {
+        deletePost($_POST['delete_post_index']);
     }
     header('Location: ' . $_SERVER['PHP_SELF']);
     exit;
@@ -123,17 +126,23 @@ $cities = loadCities();
     <nav>
         <ul>
             <li><a href="index.php">Posty</a></li>
-            <li><a href="#">O nas</a></li>
-            <li><a href="#">Usługi</a></li>
-            <li><a href="#">Kontakt</a></li>
+            <li><a>O nas</a></li>
+            <li><a>Usługi</a></li>
+            <li><a>Kontakt</a></li>
+            <li><a>Wymagania</a></li>
+            <?php if (isset($_SESSION['admin']) && $_SESSION['admin']): ?>
+                <li><a href="logout.php">Wyloguj</a></li>
+            <?php else: ?>
+                <li><a href="login.php">Zaloguj</a></li>
+            <?php endif; ?>
         </ul>
         <form id="search-form" action="index.php" method="GET">
-            <label for="search_location">Szukaj po lokalizacji:</label>
+            <label for="search_location" style="color:white">Szukaj po lokalizacji:</label>
             <input type="text" id="search_location" name="search_location" value="<?php echo htmlspecialchars($searchLocation); ?>" required>
             <input type="submit" value="Szukaj">
         </form>
         <div class="sort-buttons">
-            <span>Sortuj według:</span>
+            <span style="color:white">Sortuj według:</span>
             <button type="button" class="sort-button" onclick="sortPostsBy('score')">Ocen</button>
             <button type="button" class="sort-button" onclick="sortPostsBy('date')">Najnowszych</button>
         </div>
@@ -166,20 +175,7 @@ $cities = loadCities();
                 </div>
                 <div class="form-group">
                     <label for="location">Lokalizacja:</label>
-                    <input list="cities" id="location" name="location" required>
-                    <datalist id="cities">
-                        <?php foreach ($cities as $city): ?>
-                            <option value="<?php echo htmlspecialchars($city); ?>">
-                        <?php endforeach; ?>
-                    </datalist>
-                </div>
-                <div class="form-group">
-                    <label for="shop">Sklep:</label>
-                    <input type="text" id="shop" name="shop" required>
-                </div>
-                <div class="form-group">
-                    <label for="customer_features">Cechy szczegółowe klienta:</label>
-                    <textarea id="customer_features" name="customer_features" required></textarea>
+                    <input type="text" id="location" name="location" required>
                 </div>
                 <div class="form-group">
                     <label for="title">Tytuł:</label>
@@ -190,10 +186,18 @@ $cities = loadCities();
                     <textarea id="content" name="content" required></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="image">Załącz zdjęcie:</label>
-                    <input type="file" id="image" name="image">
+                    <label for="shop">Sklep:</label>
+                    <input type="text" id="shop" name="shop" required>
                 </div>
-                <input type="submit" value="Opublikuj" class="submit-btn">
+                <div class="form-group">
+                    <label for="customer_features">Cecha klienta:</label>
+                    <input type="text" id="customer_features" name="customer_features" required>
+                </div>
+                <div class="form-group">
+                    <label for="image">Zdjęcie (opcjonalnie):</label>
+                    <input type="file" id="image" name="image" accept="image/*">
+                </div>
+                <input type="submit" value="Dodaj Post" class="submit-btn">
             </form>
         </div>
     </div>

@@ -140,6 +140,14 @@ function displayPosts($posts, $page = 1, $postsPerPage = 10) {
         echo '<span class="score">' . htmlspecialchars($post['score']) . '</span>';
         echo '<img src="downvote.png" alt="Downvote" class="downvote">';
         echo '</div>';
+        
+        if (isset($_SESSION['admin']) && $_SESSION['admin']) {
+            echo '<form action="index.php" method="POST" style="display:inline;">';
+            echo '<input type="hidden" name="delete_post_index" value="' . $i . '">';
+            echo '<input type="submit" class="delete-btn" value="Usuń">';
+            echo '</form>';
+        }
+
         echo '</div>';
     }
 
@@ -159,6 +167,8 @@ function displayPosts($posts, $page = 1, $postsPerPage = 10) {
     }
     echo '</div>';
 }
+
+
 
 function addComment($postIndex, $nick, $content) {
     if (strlen($content) > 100) {
@@ -200,5 +210,13 @@ function searchPostsByLocation($location) {
                !empty($post['customer_features']);
     });
     return $filteredPosts;
+}
+
+function deletePost($postIndex) {
+    $posts = loadPosts();
+    if (isset($posts[$postIndex])) {
+        array_splice($posts, $postIndex, 1); // Usuwa post na podstawie indeksu
+        savePosts($posts);
+    }
 }
 ?>
