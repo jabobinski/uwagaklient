@@ -1,1 +1,3 @@
-posts.txt
+/uploads/*.png
+/uploads/*.jpg
+*.txt
