@@ -75,7 +75,6 @@ function loadPosts($sort = 'date') {
 }
 
 function savePosts($posts) {
-    // Save posts with proper locking
     $file = fopen('posts.txt', 'w');
     if (flock($file, LOCK_EX)) {  // acquire an exclusive lock
         fwrite($file, serialize($posts));
