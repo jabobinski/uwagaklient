@@ -1,1 +1,1 @@
-a:1:{i:0;a:10:{s:4:"nick";s:6:"asdada";s:8:"location";s:4:"dada";s:5:"title";s:4:"dada";s:7:"content";s:5:"dadad";s:4:"shop";s:4:"adad";s:17:"customer_features";s:5:"adada";s:4:"date";s:19:"2024-06-27 19:37:59";s:8:"comments";a:0:{}s:5:"score";i:0;s:5:"image";s:13:"uploads/1.png";}}
+a:0:{}
