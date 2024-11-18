@@ -29,7 +29,13 @@ session_start();
         </ul>
     </nav>
     <main>
-        <span>Jesteśmy firmą specjalizującą się w dostarczaniu najlepszych usług dla naszych klientów.</span>
+        <span>WAW_2023_L_N_II_INF7_C4</span>
+        <ul>
+            <li>Lider: Sebastian Jeżowski nr albumu 163033</li>
+            <li>Jakub Grygiel nr albumu 163030</li>
+            <li>Krzysztof Krasa nr albumu 163046</li>
+            <li> Jakub Bobiński nr albumu 163818</li>
+        </ul>
     </main>
 </body>
 </html>
