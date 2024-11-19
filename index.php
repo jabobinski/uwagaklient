@@ -2,6 +2,12 @@
 session_start();
 include 'functions.php';
 
+if (!isset($_SESSION['visited'])) {
+    $_SESSION['visited'] = true;
+    header("Location: welcome.php");
+    exit();
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['nick'], $_POST['location'], $_POST['title'], $_POST['content'], $_POST['shop'], $_POST['customer_features'])) {
         $image = null;

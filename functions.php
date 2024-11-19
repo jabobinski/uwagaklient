@@ -112,6 +112,7 @@ function displayPosts($posts, $page = 1, $postsPerPage = 5) {
         echo '<div class="post-nick"><strong><span class="post-icon"></span>' . htmlspecialchars($post['nick']) . '</strong></div>';
         echo '<div class="post-content">' . nl2br(htmlspecialchars($post['content'])) . '</div>';
         echo '<div class="post-features"><strong>Cechy szczegółowe klienta:</strong> ' . nl2br(htmlspecialchars($post['customer_features'])) . '</div>';
+        echo '<hr>';
         echo '</div>';
         
         // Prawy blok
