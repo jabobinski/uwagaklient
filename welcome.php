@@ -78,16 +78,18 @@
 </head>
 <body>
     <div class="welcome-screen" id="welcomeScreen">
-        <img src="detective.png" alt="Logo"> <!-- Podmień logo na swoją grafikę -->
+        <img src="logo.png" alt="Logo"> <!-- Podmień logo na swoją grafikę -->
         <h1>MOMENCIK! Czy jesteś Tajemniczym Klientem?</h1>
         <div class="button-group">
             <button class="button-yes" onclick="disconnect()">Tak</button>
-            <button class="button-no" onclick="redirectToHome()">Nie</button>
+            <button class="button-no" onclick="decline()">Nie</button>
         </div>
     </div>
 
     <script>
-        function redirectToHome() {
+        function decline() {
+            // Ustaw cookie oznaczające, że użytkownik kliknął "Nie"
+            document.cookie = "user_declined=true; path=/; max-age=86400"; // Ważne przez 1 dzień
             const screen = document.getElementById('welcomeScreen');
             screen.classList.add('fade-out'); // Dodaje klasę do animacji zanikania
             setTimeout(() => {

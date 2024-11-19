@@ -2,8 +2,7 @@
 session_start();
 include 'functions.php';
 
-if (!isset($_SESSION['visited'])) {
-    $_SESSION['visited'] = true;
+if (!isset($_COOKIE['user_declined'])) {
     header("Location: welcome.php");
     exit();
 }
