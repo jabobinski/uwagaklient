@@ -141,6 +141,11 @@ section.posts .post:nth-child(6) {
     animation-delay: 1.50s; /* Trzeci post - jeszcze większe opóźnienie */
 }
 
+section.posts .post.animation-done {
+    animation: none; /* Zatrzymanie animacji po jej zakończeniu */
+    opacity: 1;
+}
+
 section.posts .post:hover {
     transform: translateY(-4px);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
