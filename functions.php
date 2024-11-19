@@ -109,16 +109,16 @@ function displayPosts($posts, $page = 1, $postsPerPage = 5) {
         
         // Lewy blok
         echo '<div class="post-left">';
-        echo '<div class="post-nick"><strong>' . htmlspecialchars($post['nick']) . '</strong></div>';
+        echo '<div class="post-nick"><strong><span class="post-icon"></span>' . htmlspecialchars($post['nick']) . '</strong></div>';
         echo '<div class="post-content">' . nl2br(htmlspecialchars($post['content'])) . '</div>';
         echo '<div class="post-features"><strong>Cechy szczegółowe klienta:</strong> ' . nl2br(htmlspecialchars($post['customer_features'])) . '</div>';
         echo '</div>';
         
         // Prawy blok
         echo '<div class="post-right">';
-        echo '<div class="post-date">' . htmlspecialchars($post['date']) . '</div>';
-        echo '<div class="post-location">' . htmlspecialchars($post['location']) . '</div>';
-        echo '<div class="post-shop">' . htmlspecialchars($post['shop']) . '</div>';
+        echo '<div class="post-date"><span class="post-icon"></span>' . htmlspecialchars($post['date']) . '</div>';
+        echo '<div class="post-location"><span class="post-icon"></span>' . htmlspecialchars($post['location']) . '</div>';
+        echo '<div class="post-shop"><span class="post-icon"></span>' . htmlspecialchars($post['shop']) . '</div>';
         echo '</div>';
         
         echo '</div>'; // Koniec kontenera

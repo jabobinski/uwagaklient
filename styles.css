@@ -124,15 +124,16 @@ section.posts .post hr {
 }
 
 .post-left {
-    width: 60%;
+    width: 75%;
 }
 
 .post-right {
-    width: 40%;
-    text-align: right;
+    width: 25%;
+    text-align: center;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    font-size: 0.76rem;
 }
 
 .post-left, .post-right {
@@ -152,11 +153,11 @@ section.posts .post hr {
 
 .post-nick {
     font-weight: bold;
-    font-size: 0.9rem;
+    font-size: 0.76rem;
     background-color: #44475a;
     padding: 0.5rem;
     border-radius: 4px;
-    margin-bottom: 1rem;
+    display: inline-block;
 }
 
 .post-content {
@@ -187,7 +188,8 @@ section.posts .post hr {
     background-color: #44475a;
     padding: 0.5rem;
     border-radius: 4px;
-    text-align: right;
+    text-align: center;
+    display: inline-block;
 }
 
 .post-date {
@@ -205,6 +207,8 @@ section.posts .post hr {
     width: 100%;
     border-radius: 4px;
 }
+
+
 
 .comments {
     margin-top: 1rem;
@@ -531,4 +535,28 @@ footer {
 
 .wymagania{
     width:140%;
+}
+
+.post-icon {
+    width: 1rem; /* Szerokość ikony */
+    height: 1rem; /* Wysokość ikony */
+    margin-right: 0.5rem; /* Odstęp między ikoną a tekstem */
+    vertical-align: middle; /* Wyrównanie ikony z tekstem */
+    filter: brightness(0) invert(1); /* Dostosowanie do ciemnego motywu (biała ikona) */
+    display: inline-block; /* Zapewnia dobre rozmieszczenie obok tekstu */
+}
+.post-date .post-icon {
+    content: url('icons/calendar.png'); /* Ikona dla daty */
+}
+
+.post-location .post-icon {
+    content: url('icons/skyline.png'); /* Ikona dla lokalizacji */
+}
+
+.post-shop .post-icon {
+    content: url('icons/shop.png'); /* Ikona dla sklepu */
+}
+
+.post-nick .post-icon {
+    content: url('icons/user.png'); /* Ikona dla nicka */
 }
