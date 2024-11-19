@@ -102,16 +102,32 @@ function displayPosts($posts, $page = 1, $postsPerPage = 5) {
         $post = $posts[$i];
         echo '<div class="post" data-index="' . $i . '">';
         echo '<h3>' . htmlspecialchars($post['title']) . '</h3>';
-        echo '<p><strong>Nick:</strong> ' . htmlspecialchars($post['nick']) . '</p>';
-        echo '<p><strong>Lokalizacja:</strong> ' . htmlspecialchars($post['location']) . '</p>';
-        echo '<p><strong>Sklep:</strong> ' . htmlspecialchars($post['shop']) . '</p>';
-        echo '<p><strong>Cechy szczegółowe klienta:</strong> ' . nl2br(htmlspecialchars($post['customer_features'])) . '</p>';
-        echo '<p><strong>Data:</strong> ' . htmlspecialchars($post['date']) . '</p>';
-        echo '<p>' . nl2br(htmlspecialchars($post['content'])) . '</p>';
+        echo '<hr>'; // Biała linia oddzielająca tytuł od reszty posta
+        
+        // Blok kontenera dla podziału na lewy i prawy blok
+        echo '<div class="post-container">';
+        
+        // Lewy blok
+        echo '<div class="post-left">';
+        echo '<div class="post-nick"><strong>' . htmlspecialchars($post['nick']) . '</strong></div>';
+        echo '<div class="post-content">' . nl2br(htmlspecialchars($post['content'])) . '</div>';
+        echo '<div class="post-features"><strong>Cechy szczegółowe klienta:</strong> ' . nl2br(htmlspecialchars($post['customer_features'])) . '</div>';
+        echo '</div>';
+        
+        // Prawy blok
+        echo '<div class="post-right">';
+        echo '<div class="post-date">' . htmlspecialchars($post['date']) . '</div>';
+        echo '<div class="post-location">' . htmlspecialchars($post['location']) . '</div>';
+        echo '<div class="post-shop">' . htmlspecialchars($post['shop']) . '</div>';
+        echo '</div>';
+        
+        echo '</div>'; // Koniec kontenera
+        
         if ($post['image']) {
             echo '<p><button onclick="toggleImage(' . $i . ')">Zobacz zdjęcie</button></p>';
             echo '<div id="image-' . $i . '" class="post-image"><img src="' . htmlspecialchars($post['image']) . '" alt="Zdjęcie załączone do posta"></div>';
         }
+        
         echo '<div class="comments">';
         echo '<h4>Komentarze:</h4>';
         if (isset($post['comments']) && is_array($post['comments'])) {
@@ -138,6 +154,8 @@ function displayPosts($posts, $page = 1, $postsPerPage = 5) {
         echo '<span class="score">' . htmlspecialchars($post['score']) . '</span>';
         echo '<img src="downvote.png" alt="Downvote" class="downvote">';
         echo '</div>';
+        echo '</div>';
+        
         
         if (isset($_SESSION['admin']) && $_SESSION['admin']) {
             echo '<form action="index.php" method="POST" style="display:inline;">';

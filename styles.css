@@ -90,6 +90,7 @@ main {
 
 section.posts {
     margin-bottom: 2rem;
+    color: white;
 }
 
 section.posts .post {
@@ -107,11 +108,90 @@ section.posts .post:hover {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
-section.posts h2,
-section.post-form h2 {
-    border-bottom: 2px solid #50fa7b;
-    padding-bottom: 0.5rem;
+section.posts h3 {
+    margin-bottom: 0.5rem;
+}
+
+section.posts .post hr {
+    border: 1px solid white;
+    margin: 1rem 0;
+}
+
+.post-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.post-left {
+    width: 60%;
+}
+
+.post-right {
+    width: 40%;
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.post-left, .post-right {
+    word-wrap: break-word; /* Pozwala na zawijanie długich wyrazów */
+    word-break: break-word; /* Dodaje dodatkowe zawijanie, jeśli wyraz jest za długi */
+    overflow-wrap: break-word; /* Wspiera starsze przeglądarki */
+    max-width: 100%;
+    line-height: 1.6;
+}
+.post{
+    word-wrap: break-word; /* Pozwala na zawijanie długich wyrazów */
+    word-break: break-word; /* Dodaje dodatkowe zawijanie, jeśli wyraz jest za długi */
+    overflow-wrap: break-word; /* Wspiera starsze przeglądarki */
+    max-width: 100%;
+    line-height: 1.6;
+}
+
+.post-nick {
+    font-weight: bold;
+    font-size: 0.9rem;
+    background-color: #44475a;
+    padding: 0.5rem;
+    border-radius: 4px;
     margin-bottom: 1rem;
+}
+
+.post-content {
+    margin-top: 1rem;
+    word-wrap: break-word;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    overflow-x: hidden; /* Ukryj poziomy pasek przewijania, jeśli jest */
+    background-color: #44475a;
+    padding: 0.5rem;
+    border-radius: 4px;
+    margin-top: 1rem;
+}
+
+.post-features {
+    background-color: #44475a;
+    padding: 0.5rem;
+    border-radius: 4px;
+    margin-top: 1rem;
+}
+.post-content, .post-features {
+    line-height: 1.6; /* Większa wartość, bardziej czytelny tekst */
+}
+
+.post-date,
+.post-location,
+.post-shop {
+    background-color: #44475a;
+    padding: 0.5rem;
+    border-radius: 4px;
+    text-align: right;
+}
+
+.post-date {
+    margin-top: 0;
 }
 
 .post-image {
