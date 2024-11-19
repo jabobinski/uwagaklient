@@ -83,7 +83,7 @@ function savePosts($posts) {
     fclose($file);
 }
 
-function displayPosts($posts, $page = 1, $postsPerPage = 5) {
+function displayPosts($posts, $page = 1, $postsPerPage = 6) {
     $totalPosts = count($posts);
     $totalPages = ceil($totalPosts / $postsPerPage);
     $start = ($page - 1) * $postsPerPage;
@@ -167,6 +167,12 @@ function displayPosts($posts, $page = 1, $postsPerPage = 5) {
 
         echo '</div>';
     }
+}
+function displayPagination($posts, $page = 1, $postsPerPage = 5) {
+    $totalPosts = count($posts);
+    $totalPages = ceil($totalPosts / $postsPerPage);
+    $start = ($page - 1) * $postsPerPage;
+    $end = min($start + $postsPerPage, $totalPosts);
 
     echo '<div class="pagination">';
     if ($page > 1) {
@@ -184,7 +190,6 @@ function displayPosts($posts, $page = 1, $postsPerPage = 5) {
     }
     echo '</div>';
 }
-
 
 
 function addComment($postIndex, $nick, $content) {

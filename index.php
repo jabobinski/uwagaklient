@@ -41,7 +41,7 @@ $cities = loadCities();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Uwaga Klient!</title>
+    <title>Uwaga Klient!</title> 
     <link rel="stylesheet" href="styles.css">
     <script>
         function toggleCommentForm(postIndex) {
@@ -124,7 +124,6 @@ $cities = loadCities();
         }
     </script>
 </head>
-<body>
     <header>
         <h1>Uwaga Klient!</h1>
     </header>
@@ -159,10 +158,18 @@ $cities = loadCities();
     <main>
         <button class="open-post-form" onclick="showPostForm()">Napisz Post</button>
         <section class="posts">
-            <h2>Posty</h2>
             <?php
             if (!empty($filteredPosts)) {
                 displayPosts($filteredPosts, $page);
+            } else {
+                echo '<p>Brak postów do wyświetlenia.</p>';
+            }
+            ?>
+        </section>
+        <section class="paginations">
+            <?php
+            if (!empty($filteredPosts)) {
+                displayPagination($filteredPosts, $page);
             } else {
                 echo '<p>Brak postów do wyświetlenia.</p>';
             }

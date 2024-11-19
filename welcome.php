@@ -78,7 +78,7 @@
 </head>
 <body>
     <div class="welcome-screen" id="welcomeScreen">
-        <img src="logo.png" alt="Logo"> <!-- Podmień logo na swoją grafikę -->
+        <img src="detective.png" alt="Logo">
         <h1>MOMENCIK! Czy jesteś Tajemniczym Klientem?</h1>
         <div class="button-group">
             <button class="button-yes" onclick="disconnect()">Tak</button>
