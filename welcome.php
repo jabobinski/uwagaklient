@@ -15,14 +15,22 @@
             justify-content: center;
             align-items: center;
             font-family: Arial, sans-serif;
+            overflow: hidden;
         }
 
         .welcome-screen {
             text-align: center;
+            opacity: 1;
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .welcome-screen.fade-out {
+            opacity: 0;
+            transform: scale(0.95);
         }
 
         .welcome-screen img {
-            width: 200px; /* Dostosuj rozmiar grafiki */
+            width: 200px;
             margin-bottom: 20px;
         }
 
@@ -44,30 +52,32 @@
             border-radius: 5px;
             font-size: 1rem;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, transform 0.3s;
         }
 
         .button-yes {
-            background-color: #28a745; /* Zielony */
+            background-color: #28a745;
             color: #ffffff;
         }
 
         .button-yes:hover {
             background-color: #218838;
+            transform: scale(1.05);
         }
 
         .button-no {
-            background-color: #dc3545; /* Czerwony */
+            background-color: #dc3545;
             color: #ffffff;
         }
 
         .button-no:hover {
             background-color: #c82333;
+            transform: scale(1.05);
         }
     </style>
 </head>
 <body>
-    <div class="welcome-screen">
+    <div class="welcome-screen" id="welcomeScreen">
         <img src="detective.png" alt="Logo"> <!-- Podmień logo na swoją grafikę -->
         <h1>MOMENCIK! Czy jesteś Tajemniczym Klientem?</h1>
         <div class="button-group">
@@ -78,7 +88,11 @@
 
     <script>
         function redirectToHome() {
-            window.location.href = 'index.php'; // Zmień na adres swojej strony głównej
+            const screen = document.getElementById('welcomeScreen');
+            screen.classList.add('fade-out'); // Dodaje klasę do animacji zanikania
+            setTimeout(() => {
+                window.location.href = 'index.php'; // Przekierowanie po zakończeniu animacji
+            }, 800); // Czas trwania animacji (zgodny z CSS)
         }
 
         function disconnect() {
