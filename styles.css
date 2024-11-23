@@ -564,6 +564,7 @@ footer {
     background-color: #dc3545;
     color: #fff;
     padding: 10px 15px;
+    margin-left: 24px;
     border: none;
     border-radius: 3px;
     cursor: pointer;
@@ -681,4 +682,10 @@ footer {
 .sort-container:hover .dropdown,
 .dropdown:hover {
     display: block; /* Pokaż menu przy najechaniu na główny przycisk lub menu */
+}
+
+.searchbtn{
+    padding: 12px 1px; /* Wewnętrzne odstępy */
+    font-size: 16px; /* Rozmiar czcionki */
+    font-weight: bold; /* Pogrubiona czcionka */
 }

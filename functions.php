@@ -154,16 +154,15 @@ function displayPosts($posts, $page = 1, $postsPerPage = 6) {
         echo '<img src="upvote.png" alt="Upvote" class="upvote">';
         echo '<span class="score">' . htmlspecialchars($post['score']) . '</span>';
         echo '<img src="downvote.png" alt="Downvote" class="downvote">';
-        echo '</div>';
-        echo '</div>';
-        
-        
         if (isset($_SESSION['admin']) && $_SESSION['admin']) {
             echo '<form action="index.php" method="POST" style="display:inline;">';
             echo '<input type="hidden" name="delete_post_index" value="' . $i . '">';
             echo '<input type="submit" class="delete-btn" value="Usuń">';
             echo '</form>';
         }
+        echo '</div>';
+        echo '</div>';
+
 
         echo '</div>';
     }
