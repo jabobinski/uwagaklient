@@ -125,7 +125,7 @@ function displayPosts($posts, $page = 1, $postsPerPage = 6) {
         echo '</div>'; // Koniec kontenera
         
         if ($post['image']) {
-            echo '<p><button onclick="toggleImage(' . $i . ')">Zobacz zdjęcie</button></p>';
+            echo '<p><button class="comment-button" onclick="toggleImage(' . $i . ')">Zobacz zdjęcie</button></p>';
             echo '<div id="image-' . $i . '" class="post-image"><img src="' . htmlspecialchars($post['image']) . '" alt="Zdjęcie załączone do posta"></div>';
         }
         

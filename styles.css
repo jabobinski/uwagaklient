@@ -36,6 +36,8 @@ nav ul {
     padding: 0;
     display: flex;
     justify-content: center;
+    font-weight: bold; /* Pogrubiona czcionka */
+    text-transform: uppercase; /* Wyskalowanie tekstu */
 }
 
 nav ul li {
@@ -494,6 +496,7 @@ form .form-group select {
     padding: 0.75rem;
     background-color: #1e1e2f;
     border: 1px solid #4c4c6d;
+    max-width: 570px;
     border-radius: 6px;
     color: #fff;
     font-size: 1rem;
@@ -515,7 +518,7 @@ form .form-group input[type="file"] {
 
 .submit-btn {
     padding: 0.75rem 1.5rem;
-    background-color: #007bff;
+    background-color: #FFA500;
     color: #fff;
     border: none;
     border-radius: 6px;
@@ -526,7 +529,7 @@ form .form-group input[type="file"] {
 }
 
 .submit-btn:hover {
-    background-color: #0056b3;
+    background-color: #FF7F00;
     transform: scale(1.05);
 }
 
@@ -752,4 +755,65 @@ footer {
     color:#FFA500;
     font-weight: bold; /* Pogrubiona czcionka */
     text-transform: uppercase; /* Wyskalowanie tekstu */
+}
+/* Ukrywanie domyślnego inputu typu file */
+.file-input {
+    display: none; /* Ukrywa domyślny przycisk */
+}
+
+/* Styl dla niestandardowego przycisku */
+.file-btn {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: #ffa500; /* Pomarańczowe tło przycisku */
+    color: #fff; /* Biały kolor tekstu */
+    font-size: 16px;
+    font-weight: 500;
+    border: none;
+    border-radius: 6px; /* Zaokrąglone rogi */
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}   
+
+/* Zmiana koloru tła i efekt przycisku po najechaniu */
+.file-btn:hover {
+    background-color: #e67e00; /* Ciemniejszy odcień pomarańczowego */
+    transform: scale(1.05); /* Lekka animacja powiększania */
+}
+
+/* Zmiana tła i efekt po kliknięciu */
+.file-btn:active {
+    background-color: #d35400; /* Jeszcze ciemniejszy odcień przy kliknięciu */
+    transform: scale(1); /* Usunięcie animacji po kliknięciu */
+}
+
+/* Stylowanie przycisku w urządzeniach dotykowych */
+.file-btn:focus {
+    outline: none; /* Usunięcie konturu */
+    box-shadow: 0 0 5px rgba(255, 165, 0, 0.7); /* Pomarańczowa poświata */
+}
+/* Styl dla kontenera header, wyśrodkowanie poziome */
+/* Styl dla kontenera header, wyśrodkowanie poziome */
+header {
+    display: flex;
+    justify-content: center;  /* Wyśrodkowanie poziome */
+    align-items: center;      /* Wyrównanie pionowe (na środku wysokości) */
+}
+
+/* Styl dla nagłówka h1 */
+header h1 {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    color: white;
+    margin: 0;
+}
+
+/* Styl dla ikony obok tekstu */
+.header-icon {
+    width: 40px;  /* Szerokość ikony */
+    height: 40px; /* Wysokość ikony */
+    margin-right: 10px; /* Odstęp między ikoną a tekstem */
+    object-fit: contain; /* Zachowanie proporcji ikony */
 }

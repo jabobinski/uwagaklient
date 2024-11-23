@@ -125,7 +125,7 @@ $cities = loadCities();
     </script>
 </head>
     <header>
-        <h1>Uwaga Klient!</h1>
+        <h1><img src="detective.png" alt="Ikona" class="header-icon"> Uwaga Klient!</h1>
     </header>
     <nav>
         <ul>
@@ -183,7 +183,7 @@ $cities = loadCities();
     <div id="post-modal" class="post-modal">
         <div class="post-modal-content">
             <span class="close" onclick="hidePostForm()">&times;</span>
-            <h2>Napisz Post</h2>
+            <h2 class="postitle">Napisz Post</h2>
             <form action="index.php" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="nick">Nick:</label>
@@ -210,8 +210,10 @@ $cities = loadCities();
                     <input type="text" id="customer_features" name="customer_features" required>
                 </div>
                 <div class="form-group">
-                    <label for="image">Zdjęcie (opcjonalnie):</label>
-                    <input type="file" id="image" name="image" accept="image/*">
+                    <div class="file-upload">
+                        <label for="image" class="file-btn">Zdjęcie</label>
+                        <input type="file" id="image" name="image" accept="image/*" class="file-input">
+                    </div>
                 </div>
                 <input type="submit" value="Dodaj Post" class="submit-btn">
             </form>
