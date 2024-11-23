@@ -5,6 +5,12 @@ body {
     margin: 0;
     padding: 0;
     animation: fadeIn 1s ease-out;
+    background: 
+        linear-gradient(rgba(0, 0, 0, 0.92), rgba(0, 0, 0, 0.92)), /* przezroczystość */
+        url('background.jpg');
+    background-size: cover; /* Tło wypełnia całą powierzchnię, zachowując proporcje */
+    background-position: center; /* Tło jest wyśrodkowane */
+    height: 100vh; /* Tło zajmuje całą wysokość okna przeglądarki */
 }
 
 header {
@@ -73,6 +79,8 @@ nav form input[type="submit"] {
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    margin-bottom: 12px;
+    margin-left: 12px;
 }
 
 nav form input[type="submit"]:hover {
@@ -265,7 +273,7 @@ section.posts .post:hover {
 
 .comment {
     background-color: #2b2b3c;
-    border-left: 4px solid #ffffff; /* Biała obramówka */
+    border-left: 4px solid #FFA500; /* Biała obramówka */
     padding: 1rem;
     margin-top: 0.75rem;
     border-radius: 6px;
@@ -320,7 +328,7 @@ section.posts .post:hover {
 
 .comment-form input[type="text"]:focus,
 .comment-form textarea:focus {
-    border-color: #ffffff;
+    border-color: #FFA500;
     box-shadow: 0px 0px 8px rgba(255, 255, 255, 0.5); /* Biały cień */
     outline: none;
 }
@@ -609,6 +617,7 @@ footer {
     border: none; /* Brak obramowania */
     border-radius: 8px; /* Zaokrąglone rogi */
     padding: 12px 24px; /* Wewnętrzne odstępy */
+    margin-top: 12px;
     font-size: 16px; /* Rozmiar czcionki */
     font-weight: bold; /* Pogrubiona czcionka */
     text-transform: uppercase; /* Wyskalowanie tekstu */
@@ -655,7 +664,7 @@ footer {
     position: absolute;
     top: 100%; /* Ustawienie poniżej przycisku */
     left: 0;
-    background-color: rgba(255, 165, 0, 0.5); /* Pomarańczowy z opacity 0.5 */
+    background-color: rgba(0, 0, 0, 0.5); /* Pomarańczowy z opacity 0.5 */
     border-radius: 0; /* Zaokrąglone rogi */
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Delikatny cień */
     padding: 8px 0;
@@ -667,6 +676,9 @@ footer {
     color: white; /* Biała czcionka */
     border: none; /* Brak obramowania */
     padding: 10px 20px; /* Wewnętrzne odstępy */
+    border-left: 6px solid #FFA500; /* Biała obramówka */
+    font-weight: bold; /* Pogrubiona czcionka */
+    text-transform: uppercase; /* Wyskalowanie tekstu */
     font-size: 16px; /* Rozmiar czcionki */
     text-align: left; /* Wyrównanie tekstu do lewej */
     width: 100%;
@@ -688,4 +700,56 @@ footer {
     padding: 12px 1px; /* Wewnętrzne odstępy */
     font-size: 16px; /* Rozmiar czcionki */
     font-weight: bold; /* Pogrubiona czcionka */
+}
+
+/* Styl dla kontenera searchbox */
+.searchbox {
+    display: flex;
+    align-items: center; /* Wyrównanie elementów do środka w pionie */
+    max-width: 400px;
+    padding: 5px 10px;
+}
+
+/* Styl etykiety dla searchbox */
+.searchbox label {
+    font-size: 14px;
+    font-weight: 500;
+    color: white; /* Ciemny kolor tekstu */
+    font-weight: bold; /* Pogrubiona czcionka */
+    margin-right: 15px; /* Przestrzeń między etykietą a polem tekstowym */
+    transition: color 0.3s ease; /* Płynna zmiana koloru */
+}
+
+/* Styl pola tekstowego w searchbox */
+.searchbox input[type="text"] {
+    padding: 10px 15px; /* Wewnętrzne odstępy */
+    font-size: 16px;
+    color: white; /* Kolor tekstu w polu */
+    background-color: #292828; /* Tło pola */
+    border: 2px solid #ccc; /* Subtelna ramka */
+    border-radius: 8px; /* Zaokrąglone rogi */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Płynna animacja przy focus */
+    width: 250px; /* Określenie szerokości pola tekstowego */
+}
+
+/* Zmiana wyglądu inputa przy hover w searchbox */
+.searchbox input[type="text"]:hover {
+    border-color: #888; /* Zmiana koloru ramki przy najechaniu */
+}
+
+/* Zmiana wyglądu inputa przy focus w searchbox */
+.searchbox input[type="text"]:focus {
+    border-color: #ffa500; /* Kolor ramki przy focus */
+    outline: none; /* Usunięcie obramowania domyślnego */
+    box-shadow: 0 0 8px rgba(255, 165, 0, 0.5); /* Pomarańczowa poświata wokół pola */
+}
+
+/* Styl etykiety po kliknięciu na pole (focus) */
+.searchbox input[type="text"]:focus + label {
+    color: #ffa500; /* Zmiana koloru etykiety na pomarańczowy po focus */
+}
+.postitle{
+    color:#FFA500;
+    font-weight: bold; /* Pogrubiona czcionka */
+    text-transform: uppercase; /* Wyskalowanie tekstu */
 }

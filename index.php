@@ -141,9 +141,11 @@ $cities = loadCities();
             <?php endif; ?>
         </ul>
         <form id="search-form" action="index.php" method="GET">
-            <label for="search_location" class="searchbtn">Szukaj po lokalizacji:</label>
+        <div class="searchbox">
+            <label for="search_location" class="searchbtn">Lokalizacja:</label>
             <input type="text" id="search_location" name="search_location" value="<?php echo htmlspecialchars($searchLocation); ?>" required>
             <input type="submit" class="comment-button" value="Szukaj">
+        </div>
         </form>
         <div class="sort-container">
             <button class="sort-btn">Sortuj</button>

@@ -101,7 +101,7 @@ function displayPosts($posts, $page = 1, $postsPerPage = 6) {
     for ($i = $start; $i < $end; $i++) {
         $post = $posts[$i];
         echo '<div class="post" data-index="' . $i . '">';
-        echo '<h3>' . htmlspecialchars($post['title']) . '</h3>';
+        echo '<h3 class="postitle">' . htmlspecialchars($post['title']) . '</h3>';
         echo '<hr>'; // Biała linia oddzielająca tytuł od reszty posta
         
         // Blok kontenera dla podziału na lewy i prawy blok
@@ -146,7 +146,7 @@ function displayPosts($posts, $page = 1, $postsPerPage = 6) {
         echo '<input type="text" id="comment_nick" name="comment_nick" required>';
         echo '<label for="comment_content">Treść:</label>';
         echo '<textarea id="comment_content" name="comment_content" maxlength="100" required></textarea>';
-        echo '<input type="submit" value="Dodaj komentarz">';
+        echo '<input type="submit" class="comment-button" value="Dodaj komentarz">';
         echo '</form>';
         echo '</div>';
         echo '</div>';
