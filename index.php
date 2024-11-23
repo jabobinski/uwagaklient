@@ -143,12 +143,14 @@ $cities = loadCities();
         <form id="search-form" action="index.php" method="GET">
             <label for="search_location" style="color:white">Szukaj po lokalizacji:</label>
             <input type="text" id="search_location" name="search_location" value="<?php echo htmlspecialchars($searchLocation); ?>" required>
-            <input type="submit" value="Szukaj">
+            <input type="submit" class="comment-button" value="Szukaj">
         </form>
-        <div class="sort-buttons">
-            <span style="color:white">Sortuj według:</span>
-            <button type="button" class="sort-button" onclick="sortPostsBy('score')">Ocen</button>
-            <button type="button" class="sort-button" onclick="sortPostsBy('date')">Najnowszych</button>
+        <div class="sort-container">
+            <button class="sort-btn">Sortuj</button>
+            <div class="dropdown">
+                <button type="button" class="dropdown-btn" onclick="sortPostsBy('score')">Oceny</button>
+                <button type="button" class="dropdown-btn" onclick="sortPostsBy('date')">Data</button>
+            </div>
         </div>
         <form id="sort-form" action="index.php" method="GET" style="display: none;">
             <input type="hidden" name="search_location" value="<?php echo htmlspecialchars($searchLocation); ?>">

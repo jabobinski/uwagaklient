@@ -168,7 +168,7 @@ function displayPosts($posts, $page = 1, $postsPerPage = 6) {
         echo '</div>';
     }
 }
-function displayPagination($posts, $page = 1, $postsPerPage = 5) {
+function displayPagination($posts, $page = 1, $postsPerPage = 6) {
     $totalPosts = count($posts);
     $totalPages = ceil($totalPosts / $postsPerPage);
     $start = ($page - 1) * $postsPerPage;
