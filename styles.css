@@ -6,11 +6,11 @@ body {
     padding: 0;
     animation: fadeIn 1s ease-out;
     background: 
-        linear-gradient(rgba(0, 0, 0, 0.92), rgba(0, 0, 0, 0.92)), /* przezroczystość */
+        linear-gradient(rgba(0, 0, 0, 0.92), rgba(0, 0, 0, 0.92)), 
         url('background.jpg');
-    background-size: cover; /* Tło wypełnia całą powierzchnię, zachowując proporcje */
-    background-position: center; /* Tło jest wyśrodkowane */
-    height: 100vh; /* Tło zajmuje całą wysokość okna przeglądarki */
+    background-size: cover; 
+    background-position: center; 
+    height: 100vh; 
 }
 
 header {
@@ -36,8 +36,8 @@ nav ul {
     padding: 0;
     display: flex;
     justify-content: center;
-    font-weight: bold; /* Pogrubiona czcionka */
-    text-transform: uppercase; /* Wyskalowanie tekstu */
+    font-weight: bold; 
+    text-transform: uppercase; 
 }
 
 nav ul li {
@@ -100,10 +100,9 @@ main {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    animation: fadeIn 1.5s ease-out; /* Cała strona będzie miała animację */
+    animation: fadeIn 1.5s ease-out; 
 }
 
-/* Sekcja postów z efektem fade-in */
 section.posts {
     margin-bottom: 2rem;
     color: white;
@@ -114,7 +113,6 @@ section.posts {
     flex: 1;
 }
 
-/* Każdy post w sekcji będzie miał opóźnienie w animacji */
 section.posts .post {
     background-color: #2a2b3c;
     border: 1px solid #44475a;
@@ -122,37 +120,37 @@ section.posts .post {
     padding: 1rem;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    opacity: 0; /* Ustawienie początkowej niewidoczności */
+    opacity: 0; 
     animation: fadeIn 1s ease-out forwards;
-    animation-delay: 0.5s; /* Opóźnienie dla każdego posta */
+    animation-delay: 0.5s; 
 }
 
 section.posts .post:nth-child(1) {
-    animation-delay: 0.25s; /* Pierwszy post - krótka pauza */
+    animation-delay: 0.25s; 
 }
 
 section.posts .post:nth-child(2) {
-    animation-delay: 0.50s; /* Drugi post - opóźniony */
+    animation-delay: 0.50s; 
 }
 
 section.posts .post:nth-child(3) {
-    animation-delay: 0.75; /* Trzeci post - jeszcze większe opóźnienie */
+    animation-delay: 0.75; 
 }
 
 section.posts .post:nth-child(4) {
-    animation-delay: 1s; /* Trzeci post - jeszcze większe opóźnienie */
+    animation-delay: 1s; 
 }
 
 section.posts .post:nth-child(5) {
-    animation-delay: 1.25s; /* Trzeci post - jeszcze większe opóźnienie */
+    animation-delay: 1.25s; 
 }
 
 section.posts .post:nth-child(6) {
-    animation-delay: 1.50s; /* Trzeci post - jeszcze większe opóźnienie */
+    animation-delay: 1.50s; 
 }
 
 section.posts .post.animation-done {
-    animation: none; /* Zatrzymanie animacji po jej zakończeniu */
+    animation: none; 
     opacity: 1;
 }
 
@@ -181,9 +179,9 @@ section.posts .post:hover {
 }
 
 .post-left, .post-right {
-    word-wrap: break-word; /* Pozwala na zawijanie długich wyrazów */
-    word-break: break-word; /* Dodaje dodatkowe zawijanie, jeśli wyraz jest za długi */
-    overflow-wrap: break-word; /* Wspiera starsze przeglądarki */
+    word-wrap: break-word; 
+    word-break: break-word; 
+    overflow-wrap: break-word; 
     max-width: 100%;
     line-height: 1.6;
 }
@@ -210,7 +208,7 @@ section.posts .post:hover {
     word-wrap: break-word;
     word-break: break-word;
     overflow-wrap: break-word;
-    overflow-x: hidden; /* Ukryj poziomy pasek przewijania, jeśli jest */
+    overflow-x: hidden; 
     background-color: #44475a;
     padding: 0.5rem;
     border-radius: 4px;
@@ -224,7 +222,7 @@ section.posts .post:hover {
     margin-top: 1rem;
 }
 .post-content, .post-features {
-    line-height: 1.6; /* Większa wartość, bardziej czytelny tekst */
+    line-height: 1.6; 
 }
 
 .post-date,
@@ -266,16 +264,16 @@ section.posts .post:hover {
 .comments h4 {
     margin: 0;
     font-size: 1.2rem;
-    color: #ffffff; /* Białe napisy */
+    color: #ffffff;
     font-weight: bold;
-    border-bottom: 2px solid #ffffff; /* Białe obramowanie */
+    border-bottom: 2px solid #ffffff; 
     padding-bottom: 0.3rem;
     margin-bottom: 1rem;
 }
 
 .comment {
     background-color: #2b2b3c;
-    border-left: 4px solid #FFA500; /* Biała obramówka */
+    border-left: 4px solid #FFA500; 
     padding: 1rem;
     margin-top: 0.75rem;
     border-radius: 6px;
@@ -291,7 +289,7 @@ section.posts .post:hover {
 
 .comment p {
     margin: 0;
-    color: #ffffff; /* Białe napisy */
+    color: #ffffff;
     line-height: 1.5;
 }
 
@@ -303,7 +301,7 @@ section.posts .post:hover {
 }
 
 .comment-form.visible {
-    max-height: 300px; /* Maksymalna wysokość formularza */
+    max-height: 300px; 
     opacity: 1;
 }
 
@@ -320,10 +318,10 @@ section.posts .post:hover {
 .comment-form textarea {
     margin-bottom: 0.75rem;
     padding: 0.75rem;
-    border: 1px solid #ffffff; /* Biała obramówka */
+    border: 1px solid #ffffff; 
     border-radius: 6px;
     background-color: #2b2b3c;
-    color: #ffffff; /* Białe napisy */
+    color: #ffffff; 
     font-size: 1rem;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
@@ -331,14 +329,14 @@ section.posts .post:hover {
 .comment-form input[type="text"]:focus,
 .comment-form textarea:focus {
     border-color: #FFA500;
-    box-shadow: 0px 0px 8px rgba(255, 255, 255, 0.5); /* Biały cień */
+    box-shadow: 0px 0px 8px rgba(255, 255, 255, 0.5);
     outline: none;
 }
 
 .comment-form input[type="submit"] {
     padding: 0.75rem 1.5rem;
-    background-color: #6c757d; /* Szary przycisk */
-    color: #ffffff; /* Białe napisy */
+    background-color: #6c757d; 
+    color: #ffffff; 
     border: none;
     border-radius: 6px;
     cursor: pointer;
@@ -348,7 +346,7 @@ section.posts .post:hover {
 }
 
 .comment-form input[type="submit"]:hover {
-    background-color: #5a6268; /* Ciemniejszy szary na hover */
+    background-color: #5a6268;
     transform: translateY(-2px);
 }
 
@@ -372,11 +370,11 @@ section.posts .post:hover {
     display: flex;
     justify-content: center;
     margin-top: 2rem;
-    opacity: 0; /* Początkowo niewidoczna */
+    opacity: 0; 
     animation: fadeIn 1s ease-out forwards;
-    animation-delay: 2s; /* Paginacja pojawia się po opóźnieniu */
-    font-weight: bold; /* Pogrubiona czcionka */
-    text-transform: uppercase; /* Wyskalowanie tekstu */
+    animation-delay: 2s;
+    font-weight: bold;
+    text-transform: uppercase; 
 }
 
 .pagination a,
@@ -410,8 +408,8 @@ section.posts .post:hover {
     font-size: 1rem;
     margin-bottom: 1rem;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    font-weight: bold; /* Pogrubiona czcionka */
-    text-transform: uppercase; /* Wyskalowanie tekstu */
+    font-weight: bold; 
+    text-transform: uppercase; 
 }
 
 .open-post-form:hover {
@@ -592,216 +590,202 @@ footer {
 }
 
 .post-icon {
-    width: 1rem; /* Szerokość ikony */
-    height: 1rem; /* Wysokość ikony */
-    margin-right: 0.5rem; /* Odstęp między ikoną a tekstem */
-    vertical-align: middle; /* Wyrównanie ikony z tekstem */
-    filter: brightness(0) invert(1); /* Dostosowanie do ciemnego motywu (biała ikona) */
-    display: inline-block; /* Zapewnia dobre rozmieszczenie obok tekstu */
+    width: 1rem; 
+    height: 1rem; 
+    margin-right: 0.5rem; 
+    vertical-align: middle; 
+    filter: brightness(0) invert(1); 
+    display: inline-block; 
 }
 .post-date .post-icon {
-    content: url('icons/calendar.png'); /* Ikona dla daty */
+    content: url('icons/calendar.png');
 }
 
 .post-location .post-icon {
-    content: url('icons/skyline.png'); /* Ikona dla lokalizacji */
+    content: url('icons/skyline.png'); 
 }
 
 .post-shop .post-icon {
-    content: url('icons/shop.png'); /* Ikona dla sklepu */
+    content: url('icons/shop.png'); 
 }
 
 .post-nick .post-icon {
-    content: url('icons/user.png'); /* Ikona dla nicka */
+    content: url('icons/user.png'); 
 }
 .comment-button {
-    background-color: #FFA500; /* Pomarańczowy */
-    color: white; /* Biała czcionka */
-    border: none; /* Brak obramowania */
-    border-radius: 8px; /* Zaokrąglone rogi */
-    padding: 12px 24px; /* Wewnętrzne odstępy */
+    background-color: #FFA500; 
+    color: white; 
+    border: none; 
+    border-radius: 8px; 
+    padding: 12px 24px; 
     margin-top: 12px;
-    font-size: 16px; /* Rozmiar czcionki */
-    font-weight: bold; /* Pogrubiona czcionka */
-    text-transform: uppercase; /* Wyskalowanie tekstu */
-    cursor: pointer; /* Kursor wskazujący na przycisk */
-    transition: background-color 0.3s ease, transform 0.2s ease; /* Płynne przejścia */
+    font-size: 16px; 
+    font-weight: bold; 
+    text-transform: uppercase; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease, transform 0.2s ease; 
 }
 
 .comment-button:hover {
-    background-color: #FF7F00; /* Zmiana koloru na ciemniejszy pomarańczowy podczas najechania */
-    transform: scale(1.05); /* Powiększenie przycisku przy najechaniu */
+    background-color: #FF7F00;
+    transform: scale(1.05); 
 }
 
 .comment-button:focus {
-    outline: none; /* Brak konturu przy fokusie */
+    outline: none; 
 }
 
-/* Styl głównego przycisku */
 .sort-container {
     position: relative;
     display: inline-block;
 }
 
 .sort-btn {
-    background-color: #FFA500; /* Pomarańczowy */
-    color: white; /* Biała czcionka */
-    border: none; /* Brak obramowania */
+    background-color: #FFA500; 
+    color: white;
+    border: none; 
     border-radius: 0;
-    padding: 12px 24px; /* Wewnętrzne odstępy */
-    font-size: 16px; /* Rozmiar czcionki */
-    font-weight: bold; /* Pogrubiona czcionka */
-    text-transform: uppercase; /* Wyskalowanie tekstu */
-    cursor: pointer; /* Kursor wskazujący na przycisk */
-    transition: background-color 0.3s ease, transform 0.2s ease; /* Płynne przejścia */
+    padding: 12px 24px; 
+    font-size: 16px; 
+    font-weight: bold; 
+    text-transform: uppercase; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease, transform 0.2s ease; 
 }
 
 .sort-btn:hover {
-    background-color: #FF7F00; /* Zmiana koloru na ciemniejszy pomarańczowy podczas najechania */
-    transform: scale(1.05); /* Powiększenie przycisku przy najechaniu */
+    background-color: #FF7F00; 
+    transform: scale(1.05); 
 }
 
-/* Styl rozwijanej listy */
 .dropdown {
-    display: none; /* Ukrycie rozwijanego menu domyślnie */
+    display: none; 
     position: absolute;
-    top: 100%; /* Ustawienie poniżej przycisku */
+    top: 100%; 
     left: 0;
-    background-color: rgba(0, 0, 0, 0.5); /* Pomarańczowy z opacity 0.5 */
-    border-radius: 0; /* Zaokrąglone rogi */
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Delikatny cień */
+    background-color: rgba(0, 0, 0, 0.5); 
+    border-radius: 0; 
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
     padding: 8px 0;
     width: 100%;
 }
 
 .dropdown-btn {
-    background-color: transparent; /* Przycisk bez tła */
-    color: white; /* Biała czcionka */
-    border: none; /* Brak obramowania */
-    padding: 10px 20px; /* Wewnętrzne odstępy */
-    border-left: 6px solid #FFA500; /* Biała obramówka */
-    font-weight: bold; /* Pogrubiona czcionka */
-    text-transform: uppercase; /* Wyskalowanie tekstu */
-    font-size: 16px; /* Rozmiar czcionki */
-    text-align: left; /* Wyrównanie tekstu do lewej */
+    background-color: transparent;
+    color: white; 
+    border: none; 
+    padding: 10px 20px;
+    border-left: 6px solid #FFA500; 
+    font-weight: bold; 
+    text-transform: uppercase; 
+    font-size: 16px; 
+    text-align: left; 
     width: 100%;
-    cursor: pointer; /* Kursor wskazujący na przycisk */
-    transition: background-color 0.3s ease; /* Płynne przejście przycisku */
+    cursor: pointer; 
+    transition: background-color 0.3s ease; 
 }
 
 .dropdown-btn:hover {
-    background-color: rgba(255, 165, 0, 0.8); /* Zmiana koloru przy najechaniu */
+    background-color: rgba(255, 165, 0, 0.8); 
 }
 
-/* Widoczność rozwijanego menu po najechaniu na główny przycisk lub menu */
+
 .sort-container:hover .dropdown,
 .dropdown:hover {
-    display: block; /* Pokaż menu przy najechaniu na główny przycisk lub menu */
+    display: block; 
 }
 
 .searchbtn{
-    padding: 12px 1px; /* Wewnętrzne odstępy */
-    font-size: 16px; /* Rozmiar czcionki */
-    font-weight: bold; /* Pogrubiona czcionka */
+    padding: 12px 1px; 
+    font-size: 16px; 
+    font-weight: bold; 
 }
 
-/* Styl dla kontenera searchbox */
 .searchbox {
     display: flex;
-    align-items: center; /* Wyrównanie elementów do środka w pionie */
+    align-items: center; 
     max-width: 400px;
     padding: 5px 10px;
 }
 
-/* Styl etykiety dla searchbox */
 .searchbox label {
     font-size: 14px;
     font-weight: 500;
-    color: white; /* Ciemny kolor tekstu */
-    font-weight: bold; /* Pogrubiona czcionka */
-    margin-right: 15px; /* Przestrzeń między etykietą a polem tekstowym */
-    transition: color 0.3s ease; /* Płynna zmiana koloru */
+    color: white; 
+    font-weight: bold; 
+    margin-right: 15px; 
+    transition: color 0.3s ease;
 }
 
-/* Styl pola tekstowego w searchbox */
 .searchbox input[type="text"] {
-    padding: 10px 15px; /* Wewnętrzne odstępy */
+    padding: 10px 15px; 
     font-size: 16px;
-    color: white; /* Kolor tekstu w polu */
-    background-color: #292828; /* Tło pola */
-    border: 2px solid #ccc; /* Subtelna ramka */
-    border-radius: 8px; /* Zaokrąglone rogi */
-    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Płynna animacja przy focus */
-    width: 250px; /* Określenie szerokości pola tekstowego */
+    color: white; 
+    background-color: #292828; 
+    border: 2px solid #ccc; 
+    border-radius: 8px; 
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; 
+    width: 250px; 
 }
 
-/* Zmiana wyglądu inputa przy hover w searchbox */
 .searchbox input[type="text"]:hover {
-    border-color: #888; /* Zmiana koloru ramki przy najechaniu */
+    border-color: #888; 
 }
 
-/* Zmiana wyglądu inputa przy focus w searchbox */
 .searchbox input[type="text"]:focus {
-    border-color: #ffa500; /* Kolor ramki przy focus */
-    outline: none; /* Usunięcie obramowania domyślnego */
-    box-shadow: 0 0 8px rgba(255, 165, 0, 0.5); /* Pomarańczowa poświata wokół pola */
+    border-color: #ffa500; 
+    outline: none; 
+    box-shadow: 0 0 8px rgba(255, 165, 0, 0.5); 
 }
 
-/* Styl etykiety po kliknięciu na pole (focus) */
 .searchbox input[type="text"]:focus + label {
-    color: #ffa500; /* Zmiana koloru etykiety na pomarańczowy po focus */
+    color: #ffa500; 
 }
 .postitle{
     color:#FFA500;
-    font-weight: bold; /* Pogrubiona czcionka */
-    text-transform: uppercase; /* Wyskalowanie tekstu */
-}
-/* Ukrywanie domyślnego inputu typu file */
-.file-input {
-    display: none; /* Ukrywa domyślny przycisk */
+    font-weight: bold; 
+    text-transform: uppercase; 
 }
 
-/* Styl dla niestandardowego przycisku */
+.file-input {
+    display: none; 
+}
+
 .file-btn {
     display: inline-block;
     padding: 12px 25px;
-    background-color: #ffa500; /* Pomarańczowe tło przycisku */
-    color: #fff; /* Biały kolor tekstu */
+    background-color: #ffa500; 
+    color: #fff; 
     font-size: 16px;
     font-weight: 500;
     border: none;
-    border-radius: 6px; /* Zaokrąglone rogi */
+    border-radius: 6px; 
     cursor: pointer;
     text-align: center;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }   
 
-/* Zmiana koloru tła i efekt przycisku po najechaniu */
 .file-btn:hover {
-    background-color: #e67e00; /* Ciemniejszy odcień pomarańczowego */
-    transform: scale(1.05); /* Lekka animacja powiększania */
+    background-color: #e67e00; 
+    transform: scale(1.05); 
 }
 
-/* Zmiana tła i efekt po kliknięciu */
 .file-btn:active {
-    background-color: #d35400; /* Jeszcze ciemniejszy odcień przy kliknięciu */
-    transform: scale(1); /* Usunięcie animacji po kliknięciu */
+    background-color: #d35400; 
+    transform: scale(1); 
 }
 
-/* Stylowanie przycisku w urządzeniach dotykowych */
 .file-btn:focus {
-    outline: none; /* Usunięcie konturu */
-    box-shadow: 0 0 5px rgba(255, 165, 0, 0.7); /* Pomarańczowa poświata */
+    outline: none; 
+    box-shadow: 0 0 5px rgba(255, 165, 0, 0.7); 
 }
-/* Styl dla kontenera header, wyśrodkowanie poziome */
-/* Styl dla kontenera header, wyśrodkowanie poziome */
+
 header {
     display: flex;
-    justify-content: center;  /* Wyśrodkowanie poziome */
-    align-items: center;      /* Wyrównanie pionowe (na środku wysokości) */
+    justify-content: center; 
+    align-items: center;      
 }
 
-/* Styl dla nagłówka h1 */
 header h1 {
     display: flex;
     align-items: center;
@@ -810,10 +794,9 @@ header h1 {
     margin: 0;
 }
 
-/* Styl dla ikony obok tekstu */
 .header-icon {
-    width: 40px;  /* Szerokość ikony */
-    height: 40px; /* Wysokość ikony */
-    margin-right: 10px; /* Odstęp między ikoną a tekstem */
-    object-fit: contain; /* Zachowanie proporcji ikony */
+    width: 40px; 
+    height: 40px;
+    margin-right: 10px; 
+    object-fit: contain; 
 }

@@ -15,22 +15,18 @@ function savePost($nick, $location, $title, $content, $shop, $customer_features,
     );
     
     $posts = loadPosts();
-    // Add new post
     $posts[] = $post;
-    // Save updated posts
     savePosts($posts);
 }
 
 function saveImage($imageFile) {
     $targetDir = "uploads/";
-    // Create the uploads directory if it doesn't exist
     if (!file_exists($targetDir)) {
         mkdir($targetDir, 0777, true);
     }
     $targetFile = $targetDir . basename($imageFile["name"]);
     $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
 
-    // Check if image file is a actual image or fake image
     $check = getimagesize($imageFile["tmp_name"]);
     if ($check !== false) {
         if (move_uploaded_file($imageFile["tmp_name"], $targetFile)) {

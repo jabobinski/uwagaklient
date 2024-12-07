@@ -218,7 +218,6 @@ $cities = loadCities();
         </div>
     </div>
     <script>
-        // Dodajemy nasłuchiwacz zdarzenia dla zakończenia animacji
         document.querySelectorAll('.post').forEach(post => {
             post.addEventListener('animationend', () => {
                 post.classList.add('animation-done');

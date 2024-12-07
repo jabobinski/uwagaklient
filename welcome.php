@@ -88,19 +88,18 @@
 
     <script>
         function decline() {
-            // Ustaw cookie oznaczające, że użytkownik kliknął "Nie"
-            document.cookie = "user_declined=true; path=/; max-age=86400"; // Ważne przez 1 dzień
+            document.cookie = "user_declined=true; path=/; max-age=86400"; 
             const screen = document.getElementById('welcomeScreen');
-            screen.classList.add('fade-out'); // Dodaje klasę do animacji zanikania
+            screen.classList.add('fade-out'); 
             setTimeout(() => {
-                window.location.href = 'index.php'; // Przekierowanie po zakończeniu animacji
-            }, 800); // Czas trwania animacji (zgodny z CSS)
+                window.location.href = 'index.php'; 
+            }, 800); 
         }
 
         function disconnect() {
             document.body.innerHTML = '<h1 style="text-align: center; margin-top: 20%;">Połączenie przerwane</h1>';
             setTimeout(() => {
-                window.location.href = 'about:blank'; // Zerwanie połączenia
+                window.location.href = 'about:blank'; 
             }, 2000);
         }
     </script>
