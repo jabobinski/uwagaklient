@@ -33,7 +33,7 @@ session_start();
             <li>Lider: Sebastian Jeżowski nr albumu 163033</li>
             <li>Jakub Grygiel nr albumu 163030</li>
             <li>Krzysztof Krasa nr albumu 163046</li>
-            <li> Jakub Bobiński nr albumu 163818</li>
+            <li>Jakub Bobiński nr albumu 163818</li>
         </ul>
     </main>
 </body>
