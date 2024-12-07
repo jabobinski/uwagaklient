@@ -49,7 +49,6 @@ function loadPosts($sort = 'date') {
                     return strtotime($b['date']) - strtotime($a['date']);
                 });
             }
-            // Reszta funkcji pozostaje bez zmian
             foreach ($posts as &$post) {
                 if (!isset($post['nick'])) $post['nick'] = '';
                 if (!isset($post['location'])) $post['location'] = '';
@@ -72,9 +71,9 @@ function loadPosts($sort = 'date') {
 
 function savePosts($posts) {
     $file = fopen('posts.txt', 'w');
-    if (flock($file, LOCK_EX)) {  // acquire an exclusive lock
+    if (flock($file, LOCK_EX)) {  
         fwrite($file, serialize($posts));
-        flock($file, LOCK_UN);    // release the lock
+        flock($file, LOCK_UN); 
     }
     fclose($file);
 }
@@ -89,7 +88,7 @@ function displayPosts($posts, $page = 1, $postsPerPage = 6) {
         global $sort;
         if ($sort == 'score') {
             return $b['score'] - $a['score'];
-        } else { // Default to sort by date
+        } else { 
             return strtotime($b['date']) - strtotime($a['date']);
         }
     });
@@ -98,12 +97,10 @@ function displayPosts($posts, $page = 1, $postsPerPage = 6) {
         $post = $posts[$i];
         echo '<div class="post" data-index="' . $i . '">';
         echo '<h3 class="postitle">' . htmlspecialchars($post['title']) . '</h3>';
-        echo '<hr>'; // Biała linia oddzielająca tytuł od reszty posta
+        echo '<hr>';
         
-        // Blok kontenera dla podziału na lewy i prawy blok
         echo '<div class="post-container">';
         
-        // Lewy blok
         echo '<div class="post-left">';
         echo '<div class="post-nick"><strong><span class="post-icon"></span>' . htmlspecialchars($post['nick']) . '</strong></div>';
         echo '<div class="post-content">' . nl2br(htmlspecialchars($post['content'])) . '</div>';
@@ -111,14 +108,13 @@ function displayPosts($posts, $page = 1, $postsPerPage = 6) {
         echo '<hr>';
         echo '</div>';
         
-        // Prawy blok
         echo '<div class="post-right">';
         echo '<div class="post-date"><span class="post-icon"></span>' . htmlspecialchars($post['date']) . '</div>';
         echo '<div class="post-location"><span class="post-icon"></span>' . htmlspecialchars($post['location']) . '</div>';
         echo '<div class="post-shop"><span class="post-icon"></span>' . htmlspecialchars($post['shop']) . '</div>';
         echo '</div>';
         
-        echo '</div>'; // Koniec kontenera
+        echo '</div>'; 
         
         if ($post['image']) {
             echo '<p><button class="comment-button" onclick="toggleImage(' . $i . ')">Zobacz zdjęcie</button></p>';
@@ -189,7 +185,6 @@ function displayPagination($posts, $page = 1, $postsPerPage = 6) {
 
 function addComment($postIndex, $nick, $content) {
     if (strlen($content) > 100) {
-        // Zwróć błąd, jeśli komentarz przekracza 250 znaków
         return false;
     }
     $posts = loadPosts();
@@ -232,7 +227,7 @@ function searchPostsByLocation($location) {
 function deletePost($postIndex) {
     $posts = loadPosts();
     if (isset($posts[$postIndex])) {
-        array_splice($posts, $postIndex, 1); // Usuwa post na podstawie indeksu
+        array_splice($posts, $postIndex, 1);
         savePosts($posts);
     }
 }
